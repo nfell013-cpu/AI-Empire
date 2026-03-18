@@ -1,4 +1,10 @@
-
-# Admin credentials
-ADMIN_CREDENTIALS.txt
+node_modules/
 .next/
+.build/
+.env
+.env.local
+.env.production.backup
+ADMIN_CREDENTIALS.txt
+backups/
+ai_empire_production_ready.zip
+*.pdf

@@ -26,7 +26,15 @@ export function getToolInfo(toolSlug: string) {
 }
 
 /**
+ * Check if a user is admin (full access, no token cost)
+ */
+export function isAdmin(user: { role?: string }): boolean {
+  return user?.role === 'admin';
+}
+
+/**
  * Check if user has enough tokens for a tool
+ * Admin users always have enough (unlimited access)
  */
 export async function checkTokenBalance(userId: string, toolSlug: string): Promise<{
   hasEnough: boolean;
@@ -36,11 +44,22 @@ export async function checkTokenBalance(userId: string, toolSlug: string): Promi
 }> {
   const user = await prisma.user.findUnique({
     where: { id: userId },
-    select: { tokens: true },
+    select: { tokens: true, role: true },
   });
 
   if (!user) {
     throw new Error('User not found');
+  }
+
+  // Admin has unlimited access - no token cost
+  if (isAdmin(user)) {
+    const tool = tools.find(t => t.slug === toolSlug);
+    return {
+      hasEnough: true,
+      currentBalance: user.tokens,
+      cost: 0,
+      toolName: tool?.name || toolSlug,
+    };
   }
 
   const cost = getTokenCost(toolSlug);
@@ -71,10 +90,16 @@ export async function deductTokens(
   const result = await prisma.$transaction(async (tx) => {
     const user = await tx.user.findUnique({
       where: { id: userId },
-      select: { tokens: true },
+      select: { tokens: true, role: true },
     });
 
     if (!user) throw new Error('User not found');
+
+    // Admin bypass - no token deduction for admins
+    if (user.role === 'admin') {
+      return { newBalance: user.tokens, cost: 0 };
+    }
+
     if (user.tokens < cost) {
       throw new Error(`Insufficient tokens. Need ${cost}, have ${user.tokens}`);
     }
