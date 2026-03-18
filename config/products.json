@@ -1,9 +1,25 @@
 {
   "tiers": {
-    "basic": { "price": 4.99, "label": "Basic", "description": "Simple AI analysis tools" },
-    "standard": { "price": 9.99, "label": "Standard", "description": "Moderate complexity AI tools" },
-    "premium": { "price": 14.99, "label": "Premium", "description": "Advanced AI with file processing" },
-    "enterprise": { "price": 24.99, "label": "Enterprise", "description": "Complex AI workflow tools" }
+    "basic": {
+      "price": 4.99,
+      "label": "Basic",
+      "description": "Simple AI analysis tools"
+    },
+    "standard": {
+      "price": 9.99,
+      "label": "Standard",
+      "description": "Moderate complexity AI tools"
+    },
+    "premium": {
+      "price": 14.99,
+      "label": "Premium",
+      "description": "Advanced AI with file processing"
+    },
+    "enterprise": {
+      "price": 24.99,
+      "label": "Enterprise",
+      "description": "Complex AI workflow tools"
+    }
   },
   "tools": [
     {
@@ -336,5 +352,41 @@
       "category": "Health & Fitness",
       "productType": "healthpulse_subscription"
     }
-  ]
+  ],
+  "tokenPackages": [
+    {
+      "id": "starter",
+      "name": "Starter",
+      "tokens": 1000,
+      "priceInCents": 999,
+      "popular": false
+    },
+    {
+      "id": "pro",
+      "name": "Pro",
+      "tokens": 5000,
+      "priceInCents": 3999,
+      "popular": true
+    },
+    {
+      "id": "business",
+      "name": "Business",
+      "tokens": 15000,
+      "priceInCents": 9999,
+      "popular": false
+    },
+    {
+      "id": "enterprise",
+      "name": "Enterprise",
+      "tokens": 50000,
+      "priceInCents": 24999,
+      "popular": false
+    }
+  ],
+  "tokenCosts": {
+    "basic": 10,
+    "standard": 25,
+    "premium": 50,
+    "enterprise": 100
+  }
 }

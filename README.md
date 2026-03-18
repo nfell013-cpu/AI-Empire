@@ -8,7 +8,8 @@ AI Empire is a Next.js 14 application hosting 30 AI-powered micro-SaaS tools beh
 
 - **Framework:** Next.js 14 (App Router)
 - **Database:** PostgreSQL + Prisma ORM
-- **Payments:** Stripe (subscriptions) + Coinbase Commerce (crypto)
+- **Payments:** Stripe (subscriptions + ad purchases) + Coinbase Commerce (crypto)
+- **Token Economy:** Ad-based free tokens + paid token packages
 - **Auth:** NextAuth.js
 - **Styling:** Tailwind CSS + shadcn/ui
 - **Storage:** AWS S3
@@ -169,3 +170,24 @@ COINBASE_COMMERCE_API_KEY=...
 ## License
 
 Proprietary. All rights reserved.
+
+
+---
+
+## Ad-Based Token System
+
+AI Empire includes a complete ad-supported token economy where users can earn free tokens by watching ads, and advertisers can promote their products across 15 AI tools.
+
+### Key Features
+- **Users**: Watch ads to earn free tokens (3-30 tokens based on ad length)
+- **Advertisers**: Upload video/image/text ads with AI-guided pricing
+- **Admins**: Review and approve/reject ads before they go live
+- **Notifications**: SMS + email alerts on new ad submissions
+
+### Pages
+- `/earn-tokens` — Watch ads and earn free tokens
+- `/advertise` — Advertiser portal for ad creation
+- `/admin/ads` — Admin panel for ad review
+
+### Documentation
+See [docs/AD_SYSTEM.md](docs/AD_SYSTEM.md) for complete documentation including API reference, pricing formula, and setup guide.
