@@ -4,6 +4,10 @@ import Sidebar from "./sidebar";
 import NotificationBell from "./notification-bell";
 import DarkModeToggle from "./dark-mode-toggle";
 import ToolSearch from "./tool-search";
+import StreakTracker from "./streak-tracker";
+import TokenWarning from "./token-warning";
+import OnboardingTour from "./onboarding-tour";
+import KeyboardShortcuts from "./keyboard-shortcuts";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
@@ -42,12 +46,16 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
           style={{ background: "var(--bg-primary)", borderBottom: "1px solid var(--border)" }}>
           <ToolSearch />
           <div className="flex items-center gap-2">
+            <StreakTracker />
             <DarkModeToggle />
             <NotificationBell />
           </div>
         </header>
         {children}
       </main>
+      <TokenWarning />
+      <OnboardingTour />
+      <KeyboardShortcuts />
     </div>
   );
 }

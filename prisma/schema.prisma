@@ -159,6 +159,17 @@ model User {
 
   // Enhancement: Notifications
   notifications        Notification[]
+
+  // Enhancement: Streak & Gamification
+  loginStreak          Int       @default(0)
+  longestStreak        Int       @default(0)
+  lastLoginDate        DateTime?
+
+  // Enhancement: Tool ratings
+  toolRatings          ToolRating[]
+
+  // Enhancement: User webhooks
+  webhooks             UserWebhook[]
 }
 
 // Enhancement: In-app Notification system
@@ -189,6 +200,34 @@ model BlogPost {
   tags        String[]
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+}
+
+// Enhancement: Tool ratings & reviews
+model ToolRating {
+  id        String   @id @default(cuid())
+  userId    String
+  toolSlug  String
+  rating    Int      // 1-5
+  review    String?  @db.Text
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, toolSlug])
+  @@index([toolSlug, rating])
+}
+
+// Enhancement: User webhook integrations
+model UserWebhook {
+  id        String   @id @default(cuid())
+  userId    String
+  url       String
+  events    Json     @default("[\"tool.completed\"]")
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, active])
 }
 
 // Token Transaction History

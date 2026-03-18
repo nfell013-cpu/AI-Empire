@@ -301,9 +301,11 @@ export default function LandingPage() {
               <span className="text-lg font-bold text-white">AI Empire</span>
             </div>
             <div className="flex items-center gap-6 text-sm">
-              <Link href="/terms" className="text-gray-400 hover:text-white transition-colors">Terms of Service</Link>
-              <Link href="/privacy" className="text-gray-400 hover:text-white transition-colors">Privacy Policy</Link>
+              <Link href="/terms" className="text-gray-400 hover:text-white transition-colors">Terms</Link>
+              <Link href="/privacy" className="text-gray-400 hover:text-white transition-colors">Privacy</Link>
               <Link href="/blog" className="text-gray-400 hover:text-white transition-colors">Blog</Link>
+              <Link href="/status" className="text-gray-400 hover:text-white transition-colors">Status</Link>
+              <Link href="/changelog" className="text-gray-400 hover:text-white transition-colors">Changelog</Link>
             </div>
             <p className="text-gray-500 text-sm">© 2026 AI Empire. All rights reserved.</p>
           </div>

@@ -4,6 +4,8 @@ import "./globals.css";
 import { Providers } from "./providers";
 import Script from "next/script";
 import CookieConsent from "@/components/cookie-consent";
+import LoadingBar from "@/components/loading-bar";
+import PWAPrompt from "@/components/pwa-prompt";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -129,7 +131,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <script src="https://apps.abacus.ai/chatllm/appllm-lib.js" async />
       </head>
       <body className={inter.className} suppressHydrationWarning>
-        <Providers>{children}</Providers>
+        <Providers>
+          <LoadingBar />
+          {children}
+          <PWAPrompt />
+        </Providers>
         <CookieConsent />
         {/* Google Analytics */}
         {process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID && (
