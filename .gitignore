@@ -8,3 +8,4 @@ ADMIN_CREDENTIALS.txt
 backups/
 ai_empire_production_ready.zip
 *.pdf
+.vercel
