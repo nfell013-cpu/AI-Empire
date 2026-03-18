@@ -2,7 +2,13 @@
 
 import { useEffect, useState, useRef } from "react";
 import { motion } from "framer-motion";
-import { FileText, DollarSign, Users, TrendingUp, Zap, ArrowRight, Lock, ShoppingBag, HardHat, Handshake, Leaf, PawPrint, Eye, Trophy, Globe, Search, Database, ShieldCheck, BarChart2, Music, MessageSquare } from "lucide-react";
+import {
+  FileText, DollarSign, Users, TrendingUp, Zap, ArrowRight, Lock,
+  Code2, Image, MessageSquare, Mic, Sparkles, BarChart2, Mail,
+  Dumbbell, Languages, Megaphone, Bug, Presentation, ChefHat,
+  PenTool, Scale, GraduationCap, Share2, Search, BookOpen, Video,
+  ListTodo, Shield, Webhook, Plane, Receipt, Brain, Home, HeartPulse
+} from "lucide-react";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
 
@@ -28,30 +34,45 @@ function useCountUp(target: number, duration = 1500) {
 }
 
 const TOOLS = [
-  { id: 1, name: "Legalese", description: "PDF Contract Scanner – Detect auto-renewals & hidden fees", icon: FileText, href: "/legalese", active: true, color: "#6366f1" },
-  { id: 2, name: "FlipScore", description: "Thrift Item Scanner – Get eBay resale estimates", icon: ShoppingBag, href: "/flipscore", active: true, color: "#10b981" },
-  { id: 3, name: "TradeAce", description: "Vocational Exam Prep – Electrician, Plumber, HVAC", icon: HardHat, href: "/tradeace", active: true, color: "#f97316" },
-  { id: 4, name: "DealDone", description: "Brand Negotiation AI – Counter-offers & fair rates", icon: Handshake, href: "/dealdone", active: true, color: "#a855f7" },
-  { id: 5, name: "LeafCheck", description: "Plant Species ID – Identification & care guides", icon: Leaf, href: "/leafcheck", active: true, color: "#22c55e" },
-  { id: 6, name: "PawPair", description: "Pet Compatibility Quiz – Find your perfect pet", icon: PawPrint, href: "/pawpair", active: true, color: "#ec4899" },
-  { id: 7, name: "VisionLens", description: "Object ID & Valuation – History & value estimates", icon: Eye, href: "/visionlens", active: true, color: "#06b6d4" },
-  { id: 8, name: "CoachLogic", description: "Practice Plan Generator – Custom sports plans", icon: Trophy, href: "/coachlogic", active: true, color: "#ef4444" },
-  { id: 9, name: "GlobeGuide", description: "AI Travel Itinerary – Personalized trip planning", icon: Globe, href: "/globeguide", active: true, color: "#0ea5e9" },
-  { id: 10, name: "SkillScope", description: "Resume Analyzer – Job matching & improvements", icon: Search, href: "/skillscope", active: true, color: "#d946ef" },
-  { id: 11, name: "DataVault", description: "Finance Analyzer – Spending insights & budgets", icon: Database, href: "/datavault", active: true, color: "#14b8a6" },
-  { id: 12, name: "GuardianAI", description: "Reputation Monitor – Online presence protection", icon: ShieldCheck, href: "/guardianai", active: true, color: "#f43f5e" },
-  { id: 13, name: "TrendPulse", description: "Market Predictor – Stock & crypto analysis", icon: BarChart2, href: "/trendpulse", active: true, color: "#eab308" },
-  { id: 14, name: "SoundForge", description: "AI Music Generator – Create unique tracks & audio", icon: Music, href: "/soundforge", active: true, color: "#7c3aed" },
-  { id: 15, name: "MemeMint", description: "AI Meme Generator – Viral memes in seconds", icon: MessageSquare, href: "/mememint", active: true, color: "#fb923c" },
+  { id: 1,  name: "CodeAudit",   description: "AI code review & security vulnerability scanner",       icon: Code2,         href: "/codeaudit",   active: true, color: "#6366f1" },
+  { id: 2,  name: "PixelCraft",  description: "AI image generation & editing studio",                  icon: Image,         href: "/pixelcraft",  active: true, color: "#ec4899" },
+  { id: 3,  name: "DocuWise",    description: "Intelligent document summarizer & key-point extractor",  icon: FileText,      href: "/docuwise",    active: true, color: "#10b981" },
+  { id: 4,  name: "ChatGenius",  description: "Custom AI chatbot builder for businesses",               icon: MessageSquare, href: "/chatgenius",  active: true, color: "#8b5cf6" },
+  { id: 5,  name: "VoiceBox",    description: "AI text-to-speech & voice cloning engine",               icon: Mic,           href: "/voicebox",    active: true, color: "#f97316" },
+  { id: 6,  name: "BrandSpark",  description: "AI brand name & logo concept generator",                 icon: Sparkles,      href: "/brandspark",  active: true, color: "#eab308" },
+  { id: 7,  name: "DataWeave",   description: "Spreadsheet & CSV AI analyst with visualizations",       icon: BarChart2,     href: "/dataweave",   active: true, color: "#06b6d4" },
+  { id: 8,  name: "MailPilot",   description: "AI email composer & response optimizer",                 icon: Mail,          href: "/mailpilot",   active: true, color: "#14b8a6" },
+  { id: 9,  name: "FitForge",    description: "Personalized AI workout & meal plan generator",          icon: Dumbbell,      href: "/fitforge",    active: true, color: "#ef4444" },
+  { id: 10, name: "LexiLearn",   description: "AI language tutor with conversation practice",           icon: Languages,     href: "/lexilearn",   active: true, color: "#a855f7" },
+  { id: 11, name: "AdCopy",      description: "AI ad copy & social media content generator",            icon: Megaphone,     href: "/adcopy",      active: true, color: "#f43f5e" },
+  { id: 12, name: "BugBuster",   description: "AI debugging assistant & error resolution engine",       icon: Bug,           href: "/bugbuster",   active: true, color: "#22c55e" },
+  { id: 13, name: "PitchDeck",   description: "AI startup pitch deck & investor brief builder",         icon: Presentation,  href: "/pitchdeck",   active: true, color: "#0ea5e9" },
+  { id: 14, name: "RecipeRx",    description: "AI recipe generator from photos & dietary needs",        icon: ChefHat,       href: "/reciperx",    active: true, color: "#fb923c" },
+  { id: 15, name: "StockSense",  description: "AI stock & crypto market analysis with signals",         icon: TrendingUp,    href: "/stocksense",  active: true, color: "#10b981" },
+  { id: 16, name: "SketchAI",    description: "Sketch-to-design AI converter for UI/UX",               icon: PenTool,       href: "/sketchai",    active: true, color: "#d946ef" },
+  { id: 17, name: "ContractIQ",  description: "AI contract generator & clause analyzer",                icon: Scale,         href: "/contractiq",  active: true, color: "#7c3aed" },
+  { id: 18, name: "StudyBlitz",  description: "AI flashcard & quiz generator from any content",         icon: GraduationCap, href: "/studyblitz",  active: true, color: "#0369a1" },
+  { id: 19, name: "Socialize",   description: "AI social media scheduler & analytics dashboard",        icon: Share2,        href: "/socialize",   active: true, color: "#e11d48" },
+  { id: 20, name: "SEOMaster",   description: "AI SEO audit & keyword strategy optimizer",              icon: Search,        href: "/seomaster",   active: true, color: "#059669" },
+  { id: 21, name: "WriteFlow",   description: "AI long-form content writer & blog generator",           icon: BookOpen,      href: "/writeflow",   active: true, color: "#6366f1" },
+  { id: 22, name: "VideoSync",   description: "AI video transcription & subtitle generator",            icon: Video,         href: "/videosync",   active: true, color: "#dc2626" },
+  { id: 23, name: "TaskFlow",    description: "AI project management & task prioritization",            icon: ListTodo,      href: "/taskflow",    active: true, color: "#2563eb" },
+  { id: 24, name: "SecureNet",   description: "AI cybersecurity threat scanner & password auditor",     icon: Shield,        href: "/securenet",   active: true, color: "#b91c1c" },
+  { id: 25, name: "APIGen",      description: "AI REST API generator from natural language specs",      icon: Webhook,       href: "/apigen",      active: true, color: "#4f46e5" },
+  { id: 26, name: "TravelMate",  description: "AI flight & hotel deal finder with alerts",              icon: Plane,         href: "/travelmate",  active: true, color: "#0891b2" },
+  { id: 27, name: "InvoicePro",  description: "AI invoice generator & expense tracker",                 icon: Receipt,       href: "/invoicepro",  active: true, color: "#65a30d" },
+  { id: 28, name: "MindMap",     description: "AI brainstorming & mind map visualization tool",         icon: Brain,         href: "/mindmap",     active: true, color: "#c026d3" },
+  { id: 29, name: "RealtorIQ",   description: "AI real estate valuation & investment analyzer",         icon: Home,          href: "/realtoriq",   active: true, color: "#ca8a04" },
+  { id: 30, name: "HealthPulse", description: "AI symptom checker & wellness recommendation engine",    icon: HeartPulse,    href: "/healthpulse", active: true, color: "#e11d48" },
 ];
 
 export default function DashboardMetrics() {
   const { data: session } = useSession() || {};
   const [userStats, setUserStats] = useState<{ scanCount: number; freeScanUsed: boolean } | null>(null);
 
-  const totalScans = useCountUp(3847);
-  const revenue = useCountUp(28312);
-  const activeUsers = useCountUp(1204);
+  const totalScans = useCountUp(12540);
+  const revenue = useCountUp(87230);
+  const activeUsers = useCountUp(4821);
 
   useEffect(() => {
     fetch("/api/user/stats")
@@ -69,7 +90,7 @@ export default function DashboardMetrics() {
         <h1 className="text-2xl md:text-3xl font-bold">
           Welcome back, <span className="text-gradient">{user?.name ?? "Commander"}</span>
         </h1>
-        <p className="mt-1 text-sm" style={{ color: "var(--text-secondary)" }}>Here&apos;s your AI Empire at a glance.</p>
+        <p className="mt-1 text-sm" style={{ color: "var(--text-secondary)" }}>Here&apos;s your AI Empire at a glance — 30 powerful tools at your fingertips.</p>
       </motion.div>
 
       {/* Stat Cards */}
@@ -101,7 +122,7 @@ export default function DashboardMetrics() {
         ))}
       </div>
 
-      {/* Free Scan Banner */}
+      {/* Free Trial Banner */}
       {userStats && !userStats.freeScanUsed && (
         <motion.div
           initial={{ opacity: 0, scale: 0.98 }}
@@ -112,12 +133,12 @@ export default function DashboardMetrics() {
           <div className="flex items-center gap-3">
             <Zap className="w-6 h-6" style={{ color: "var(--accent)" }} />
             <div>
-              <p className="font-semibold text-sm">You have 1 free scan remaining!</p>
-              <p className="text-xs mt-0.5" style={{ color: "var(--text-secondary)" }}>Try Legalese to scan your contracts for hidden traps.</p>
+              <p className="font-semibold text-sm">You have a free trial available!</p>
+              <p className="text-xs mt-0.5" style={{ color: "var(--text-secondary)" }}>Try any tool to see AI Empire in action.</p>
             </div>
           </div>
           <Link
-            href="/legalese"
+            href="/codeaudit"
             className="flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold transition-all flex-shrink-0"
             style={{ background: "var(--accent)", color: "white" }}
           >
@@ -137,7 +158,7 @@ export default function DashboardMetrics() {
                 key={tool.id}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3 + i * 0.08, duration: 0.4 }}
+                transition={{ delay: 0.3 + i * 0.04, duration: 0.4 }}
               >
                 {tool.active && tool.href ? (
                   <Link

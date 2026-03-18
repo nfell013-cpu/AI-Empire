@@ -1,0 +1,340 @@
+{
+  "tiers": {
+    "basic": { "price": 4.99, "label": "Basic", "description": "Simple AI analysis tools" },
+    "standard": { "price": 9.99, "label": "Standard", "description": "Moderate complexity AI tools" },
+    "premium": { "price": 14.99, "label": "Premium", "description": "Advanced AI with file processing" },
+    "enterprise": { "price": 24.99, "label": "Enterprise", "description": "Complex AI workflow tools" }
+  },
+  "tools": [
+    {
+      "id": 1,
+      "slug": "codeaudit",
+      "name": "CodeAudit",
+      "description": "AI code review & security vulnerability scanner",
+      "tier": "premium",
+      "icon": "Code2",
+      "color": "#6366f1",
+      "category": "Developer Tools",
+      "productType": "codeaudit_subscription"
+    },
+    {
+      "id": 2,
+      "slug": "pixelcraft",
+      "name": "PixelCraft",
+      "description": "AI image generation & editing studio",
+      "tier": "premium",
+      "icon": "Image",
+      "color": "#ec4899",
+      "category": "Creative",
+      "productType": "pixelcraft_subscription"
+    },
+    {
+      "id": 3,
+      "slug": "docuwise",
+      "name": "DocuWise",
+      "description": "Intelligent document summarizer & key-point extractor",
+      "tier": "standard",
+      "icon": "FileText",
+      "color": "#10b981",
+      "category": "Productivity",
+      "productType": "docuwise_subscription"
+    },
+    {
+      "id": 4,
+      "slug": "chatgenius",
+      "name": "ChatGenius",
+      "description": "Custom AI chatbot builder for businesses",
+      "tier": "enterprise",
+      "icon": "MessageSquare",
+      "color": "#8b5cf6",
+      "category": "Business",
+      "productType": "chatgenius_subscription"
+    },
+    {
+      "id": 5,
+      "slug": "voicebox",
+      "name": "VoiceBox",
+      "description": "AI text-to-speech & voice cloning engine",
+      "tier": "premium",
+      "icon": "Mic",
+      "color": "#f97316",
+      "category": "Creative",
+      "productType": "voicebox_subscription"
+    },
+    {
+      "id": 6,
+      "slug": "brandspark",
+      "name": "BrandSpark",
+      "description": "AI brand name & logo concept generator",
+      "tier": "standard",
+      "icon": "Sparkles",
+      "color": "#eab308",
+      "category": "Marketing",
+      "productType": "brandspark_subscription"
+    },
+    {
+      "id": 7,
+      "slug": "dataweave",
+      "name": "DataWeave",
+      "description": "Spreadsheet & CSV AI analyst with visualizations",
+      "tier": "premium",
+      "icon": "BarChart2",
+      "color": "#06b6d4",
+      "category": "Data & Analytics",
+      "productType": "dataweave_subscription"
+    },
+    {
+      "id": 8,
+      "slug": "mailpilot",
+      "name": "MailPilot",
+      "description": "AI email composer & response optimizer",
+      "tier": "basic",
+      "icon": "Mail",
+      "color": "#14b8a6",
+      "category": "Productivity",
+      "productType": "mailpilot_subscription"
+    },
+    {
+      "id": 9,
+      "slug": "fitforge",
+      "name": "FitForge",
+      "description": "Personalized AI workout & meal plan generator",
+      "tier": "standard",
+      "icon": "Dumbbell",
+      "color": "#ef4444",
+      "category": "Health & Fitness",
+      "productType": "fitforge_subscription"
+    },
+    {
+      "id": 10,
+      "slug": "lexilearn",
+      "name": "LexiLearn",
+      "description": "AI language tutor with conversation practice",
+      "tier": "standard",
+      "icon": "Languages",
+      "color": "#a855f7",
+      "category": "Education",
+      "productType": "lexilearn_subscription"
+    },
+    {
+      "id": 11,
+      "slug": "adcopy",
+      "name": "AdCopy",
+      "description": "AI ad copy & social media content generator",
+      "tier": "standard",
+      "icon": "Megaphone",
+      "color": "#f43f5e",
+      "category": "Marketing",
+      "productType": "adcopy_subscription"
+    },
+    {
+      "id": 12,
+      "slug": "bugbuster",
+      "name": "BugBuster",
+      "description": "AI debugging assistant & error resolution engine",
+      "tier": "premium",
+      "icon": "Bug",
+      "color": "#22c55e",
+      "category": "Developer Tools",
+      "productType": "bugbuster_subscription"
+    },
+    {
+      "id": 13,
+      "slug": "pitchdeck",
+      "name": "PitchDeck",
+      "description": "AI startup pitch deck & investor brief builder",
+      "tier": "enterprise",
+      "icon": "Presentation",
+      "color": "#0ea5e9",
+      "category": "Business",
+      "productType": "pitchdeck_subscription"
+    },
+    {
+      "id": 14,
+      "slug": "reciperx",
+      "name": "RecipeRx",
+      "description": "AI recipe generator from photos & dietary needs",
+      "tier": "basic",
+      "icon": "ChefHat",
+      "color": "#fb923c",
+      "category": "Lifestyle",
+      "productType": "reciperx_subscription"
+    },
+    {
+      "id": 15,
+      "slug": "stocksense",
+      "name": "StockSense",
+      "description": "AI stock & crypto market analysis with signals",
+      "tier": "enterprise",
+      "icon": "TrendingUp",
+      "color": "#10b981",
+      "category": "Finance",
+      "productType": "stocksense_subscription"
+    },
+    {
+      "id": 16,
+      "slug": "sketchai",
+      "name": "SketchAI",
+      "description": "Sketch-to-design AI converter for UI/UX",
+      "tier": "premium",
+      "icon": "PenTool",
+      "color": "#d946ef",
+      "category": "Design",
+      "productType": "sketchai_subscription"
+    },
+    {
+      "id": 17,
+      "slug": "contractiq",
+      "name": "ContractIQ",
+      "description": "AI contract generator & clause analyzer",
+      "tier": "enterprise",
+      "icon": "Scale",
+      "color": "#7c3aed",
+      "category": "Legal",
+      "productType": "contractiq_subscription"
+    },
+    {
+      "id": 18,
+      "slug": "studyblitz",
+      "name": "StudyBlitz",
+      "description": "AI flashcard & quiz generator from any content",
+      "tier": "basic",
+      "icon": "GraduationCap",
+      "color": "#0369a1",
+      "category": "Education",
+      "productType": "studyblitz_subscription"
+    },
+    {
+      "id": 19,
+      "slug": "socialize",
+      "name": "Socialize",
+      "description": "AI social media scheduler & analytics dashboard",
+      "tier": "standard",
+      "icon": "Share2",
+      "color": "#e11d48",
+      "category": "Marketing",
+      "productType": "socialize_subscription"
+    },
+    {
+      "id": 20,
+      "slug": "seomaster",
+      "name": "SEOMaster",
+      "description": "AI SEO audit & keyword strategy optimizer",
+      "tier": "standard",
+      "icon": "Search",
+      "color": "#059669",
+      "category": "Marketing",
+      "productType": "seomaster_subscription"
+    },
+    {
+      "id": 21,
+      "slug": "writeflow",
+      "name": "WriteFlow",
+      "description": "AI long-form content writer & blog generator",
+      "tier": "standard",
+      "icon": "BookOpen",
+      "color": "#6366f1",
+      "category": "Content",
+      "productType": "writeflow_subscription"
+    },
+    {
+      "id": 22,
+      "slug": "videosync",
+      "name": "VideoSync",
+      "description": "AI video transcription & subtitle generator",
+      "tier": "premium",
+      "icon": "Video",
+      "color": "#dc2626",
+      "category": "Creative",
+      "productType": "videosync_subscription"
+    },
+    {
+      "id": 23,
+      "slug": "taskflow",
+      "name": "TaskFlow",
+      "description": "AI project management & task prioritization assistant",
+      "tier": "standard",
+      "icon": "ListTodo",
+      "color": "#2563eb",
+      "category": "Productivity",
+      "productType": "taskflow_subscription"
+    },
+    {
+      "id": 24,
+      "slug": "securenet",
+      "name": "SecureNet",
+      "description": "AI cybersecurity threat scanner & password auditor",
+      "tier": "enterprise",
+      "icon": "Shield",
+      "color": "#b91c1c",
+      "category": "Security",
+      "productType": "securenet_subscription"
+    },
+    {
+      "id": 25,
+      "slug": "apigen",
+      "name": "APIGen",
+      "description": "AI REST API generator from natural language specs",
+      "tier": "premium",
+      "icon": "Webhook",
+      "color": "#4f46e5",
+      "category": "Developer Tools",
+      "productType": "apigen_subscription"
+    },
+    {
+      "id": 26,
+      "slug": "travelmate",
+      "name": "TravelMate",
+      "description": "AI flight & hotel deal finder with alerts",
+      "tier": "standard",
+      "icon": "Plane",
+      "color": "#0891b2",
+      "category": "Travel",
+      "productType": "travelmate_subscription"
+    },
+    {
+      "id": 27,
+      "slug": "invoicepro",
+      "name": "InvoicePro",
+      "description": "AI invoice generator & expense tracker",
+      "tier": "basic",
+      "icon": "Receipt",
+      "color": "#65a30d",
+      "category": "Finance",
+      "productType": "invoicepro_subscription"
+    },
+    {
+      "id": 28,
+      "slug": "mindmap",
+      "name": "MindMap",
+      "description": "AI brainstorming & mind map visualization tool",
+      "tier": "basic",
+      "icon": "Brain",
+      "color": "#c026d3",
+      "category": "Productivity",
+      "productType": "mindmap_subscription"
+    },
+    {
+      "id": 29,
+      "slug": "realtoriq",
+      "name": "RealtorIQ",
+      "description": "AI real estate valuation & investment analyzer",
+      "tier": "enterprise",
+      "icon": "Home",
+      "color": "#ca8a04",
+      "category": "Real Estate",
+      "productType": "realtoriq_subscription"
+    },
+    {
+      "id": 30,
+      "slug": "healthpulse",
+      "name": "HealthPulse",
+      "description": "AI symptom checker & wellness recommendation engine",
+      "tier": "premium",
+      "icon": "HeartPulse",
+      "color": "#e11d48",
+      "category": "Health & Fitness",
+      "productType": "healthpulse_subscription"
+    }
+  ]
+}

@@ -3,12 +3,15 @@ import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/db";
 import { verifyWebhookSignature } from "@/lib/coinbase";
 
+/**
+ * Generic Coinbase Commerce webhook handler for all 30 AI tools.
+ * Uses the subscriptions JSON field on the User model.
+ */
 export async function POST(request: NextRequest) {
   const body = await request.text();
   const signature = request.headers.get("x-cc-webhook-signature") || "";
   const webhookSecret = process.env.COINBASE_WEBHOOK_SECRET || "";
 
-  // Verify webhook signature if secret is configured
   if (webhookSecret && !verifyWebhookSignature(body, signature, webhookSecret)) {
     console.error("Invalid Coinbase webhook signature");
     return NextResponse.json({ error: "Invalid signature" }, { status: 400 });
@@ -34,124 +37,45 @@ export async function POST(request: NextRequest) {
 
   try {
     if (eventType === "charge:confirmed" || eventType === "charge:resolved") {
-      // Payment confirmed!
-      const cryptoPayment = await prisma.cryptoPayment.findUnique({
-        where: { chargeId },
-      });
+      const cryptoPayment = await prisma.cryptoPayment.findUnique({ where: { chargeId } });
 
       if (!cryptoPayment || cryptoPayment.status === "completed") {
         return NextResponse.json({ received: true });
       }
 
-      // Update crypto payment status
       await prisma.cryptoPayment.update({
         where: { chargeId },
-        data: { 
-          status: "completed", 
+        data: {
+          status: "completed",
           completedAt: new Date(),
           cryptoCurrency: chargeData.payments?.[0]?.network || "CRYPTO",
         },
       });
 
-      const expiresAt = new Date();
-      expiresAt.setMonth(expiresAt.getMonth() + 1);
+      if (userId && productType) {
+        const expiresAt = new Date();
+        expiresAt.setMonth(expiresAt.getMonth() + 1);
 
-      // Activate subscription based on product type
-      switch (productType) {
-        case "flipscore_subscription":
-          await prisma.user.update({
-            where: { id: userId },
-            data: { flipScoreSubscribed: true, flipScoreSubId: `crypto_${chargeId}`, flipScoreSubExpiresAt: expiresAt },
-          });
-          break;
-        case "tradeace_subscription":
-          await prisma.user.update({
-            where: { id: userId },
-            data: { tradeAceSubscribed: true, tradeAceSubId: `crypto_${chargeId}`, tradeAceSubExpiresAt: expiresAt },
-          });
-          break;
-        case "dealdone_subscription":
-          await prisma.user.update({
-            where: { id: userId },
-            data: { dealDoneSubscribed: true, dealDoneSubId: `crypto_${chargeId}`, dealDoneSubExpiresAt: expiresAt },
-          });
-          break;
-        case "leafcheck_subscription":
-          await prisma.user.update({
-            where: { id: userId },
-            data: { leafCheckSubscribed: true, leafCheckSubId: `crypto_${chargeId}`, leafCheckSubExpiresAt: expiresAt },
-          });
-          break;
-        case "pawpair_purchase":
-          await prisma.user.update({
-            where: { id: userId },
-            data: { pawPairPurchased: true, pawPairPaymentId: `crypto_${chargeId}` },
-          });
-          break;
-        case "visionlens_subscription":
-          await prisma.user.update({
-            where: { id: userId },
-            data: { visionLensSubscribed: true, visionLensSubId: `crypto_${chargeId}`, visionLensSubExpiresAt: expiresAt },
-          });
-          break;
-        case "coachlogic_subscription":
-          await prisma.user.update({
-            where: { id: userId },
-            data: { coachLogicSubscribed: true, coachLogicSubId: `crypto_${chargeId}`, coachLogicSubExpiresAt: expiresAt },
-          });
-          break;
-        case "globeguide_subscription":
-          await prisma.user.update({
-            where: { id: userId },
-            data: { globeGuideSubscribed: true, globeGuideSubId: `crypto_${chargeId}`, globeGuideSubExpiresAt: expiresAt },
-          });
-          break;
-        case "skillscope_subscription":
-          await prisma.user.update({
-            where: { id: userId },
-            data: { skillScopeSubscribed: true, skillScopeSubId: `crypto_${chargeId}`, skillScopeSubExpiresAt: expiresAt },
-          });
-          break;
-        case "datavault_subscription":
-          await prisma.user.update({
-            where: { id: userId },
-            data: { dataVaultSubscribed: true, dataVaultSubId: `crypto_${chargeId}`, dataVaultSubExpiresAt: expiresAt },
-          });
-          break;
-        case "guardianai_subscription":
-          await prisma.user.update({
-            where: { id: userId },
-            data: { guardianAISubscribed: true, guardianAISubId: `crypto_${chargeId}`, guardianAISubExpiresAt: expiresAt },
-          });
-          break;
-        case "trendpulse_subscription":
-          await prisma.user.update({
-            where: { id: userId },
-            data: { trendPulseSubscribed: true, trendPulseSubId: `crypto_${chargeId}`, trendPulseSubExpiresAt: expiresAt },
-          });
-          break;
-        case "soundforge_subscription":
-          await prisma.user.update({
-            where: { id: userId },
-            data: { soundForgeSubscribed: true, soundForgeSubId: `crypto_${chargeId}`, soundForgeSubExpiresAt: expiresAt },
-          });
-          break;
-        case "mememint_subscription":
-          await prisma.user.update({
-            where: { id: userId },
-            data: { memeMintSubscribed: true, memeMintSubId: `crypto_${chargeId}`, memeMintSubExpiresAt: expiresAt },
-          });
-          break;
-        case "legalese_scan":
-          await prisma.user.update({
-            where: { id: userId },
-            data: { freeScanUsed: false },
-          });
-          break;
-        default:
-          console.log(`Unknown product type for crypto payment: ${productType}`);
+        const user = await prisma.user.findUnique({ where: { id: userId } });
+        const current = (user as Record<string, unknown>)?.subscriptions as Record<string, unknown> ?? {};
+
+        const updated = {
+          ...current,
+          [productType]: {
+            active: true,
+            subscriptionId: `crypto_${chargeId}`,
+            subscribedAt: new Date().toISOString(),
+            expiresAt: expiresAt.toISOString(),
+          },
+        };
+
+        await prisma.user.update({
+          where: { id: userId },
+          data: { subscriptions: updated },
+        });
+
+        console.log(`✅ Crypto subscription activated: ${productType} for user ${userId}`);
       }
-      console.log(`Crypto payment confirmed for ${productType} - user ${userId}`);
     }
 
     if (eventType === "charge:failed" || eventType === "charge:expired") {
