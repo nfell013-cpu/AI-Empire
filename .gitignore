@@ -3,9 +3,16 @@ node_modules/
 .build/
 .env
 .env.local
+.env.production
 .env.production.backup
+.env*.local
 ADMIN_CREDENTIALS.txt
 backups/
 ai_empire_production_ready.zip
 *.pdf
 .vercel
+stripe-products.json
+config/stripe-products-output.json
+*.crdownload
+tsconfig.tsbuildinfo
+.abacus.donotdelete

@@ -1,0 +1,9 @@
+# AI Empire - robots.txt
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /dashboard/
+Disallow: /profile/
+
+Sitemap: https://aiempire-one.vercel.app/sitemap.xml
