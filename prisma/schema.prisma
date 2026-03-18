@@ -130,6 +130,65 @@ model User {
   // Token system
   tokens               Int       @default(100)
   tokenTransactions    TokenTransaction[]
+
+  // Enhancement: Email verification
+  emailVerified        Boolean   @default(false)
+  verificationCode     String?
+  verificationExpires  DateTime?
+
+  // Enhancement: Password reset
+  resetToken           String?
+  resetTokenExpires    DateTime?
+
+  // Enhancement: Two-factor auth
+  twoFactorEnabled     Boolean   @default(false)
+  twoFactorSecret      String?
+
+  // Enhancement: Profile
+  avatarUrl            String?
+  bio                  String?   @db.Text
+
+  // Enhancement: Favorites & Recent
+  favoriteTools        String[]  @default([])
+  recentTools          Json?     // [{slug, usedAt}]
+
+  // Enhancement: Referral program
+  referralCode         String?   @unique
+  referredBy           String?   // referral code of referrer
+  referralTokensEarned Int       @default(0)
+
+  // Enhancement: Notifications
+  notifications        Notification[]
+}
+
+// Enhancement: In-app Notification system
+model Notification {
+  id        String   @id @default(cuid())
+  userId    String
+  title     String
+  message   String   @db.Text
+  type      String   @default("info") // info, success, warning, error
+  read      Boolean  @default(false)
+  link      String?
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, read, createdAt])
+}
+
+// Enhancement: Blog/News posts
+model BlogPost {
+  id          String   @id @default(cuid())
+  title       String
+  slug        String   @unique
+  excerpt     String   @db.Text
+  content     String   @db.Text
+  author      String   @default("AI Empire Team")
+  coverImage  String?
+  published   Boolean  @default(false)
+  tags        String[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }
 
 // Token Transaction History

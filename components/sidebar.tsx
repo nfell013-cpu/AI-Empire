@@ -12,7 +12,7 @@ import {
   BookOpen, Megaphone, Bug, FileBarChart, UtensilsCrossed, TrendingUp,
   Pencil, Scale, GraduationCap, Share2, PenTool, ListChecks, Shield,
   Braces, Plane, Receipt, Network, Building, HeartPulse, Activity,
-  Settings, Crown
+  Settings, Crown, CreditCard
 } from "lucide-react";
 import EarnTokensButton from "./ads/earn-tokens-button";
 
@@ -144,6 +144,45 @@ export default function Sidebar({ userName, userEmail }: SidebarProps) {
         >
           <BarChart2 className="w-4 h-4" />
           <span>Analytics</span>
+        </Link>
+
+        {/* Enhancement #14: Usage History */}
+        <Link
+          href="/dashboard/usage"
+          className="flex items-center gap-3 px-3 py-2 rounded-xl text-sm font-medium transition-all group"
+          style={{
+            background: pathname === "/dashboard/usage" ? "rgba(99,102,241,0.15)" : "transparent",
+            color: pathname === "/dashboard/usage" ? "var(--accent-light)" : "var(--text-secondary)",
+          }}
+        >
+          <Activity className="w-4 h-4" />
+          <span>Usage History</span>
+        </Link>
+
+        {/* Enhancement #13: Referral Program */}
+        <Link
+          href="/dashboard/referrals"
+          className="flex items-center gap-3 px-3 py-2 rounded-xl text-sm font-medium transition-all group"
+          style={{
+            background: pathname === "/dashboard/referrals" ? "rgba(99,102,241,0.15)" : "transparent",
+            color: pathname === "/dashboard/referrals" ? "var(--accent-light)" : "var(--text-secondary)",
+          }}
+        >
+          <Share2 className="w-4 h-4" />
+          <span>Referrals</span>
+        </Link>
+
+        {/* Enhancement #16: Subscriptions */}
+        <Link
+          href="/dashboard/subscriptions"
+          className="flex items-center gap-3 px-3 py-2 rounded-xl text-sm font-medium transition-all group"
+          style={{
+            background: pathname === "/dashboard/subscriptions" ? "rgba(99,102,241,0.15)" : "transparent",
+            color: pathname === "/dashboard/subscriptions" ? "var(--accent-light)" : "var(--text-secondary)",
+          }}
+        >
+          <CreditCard className="w-4 h-4" />
+          <span>Subscriptions</span>
         </Link>
 
         <div className="pt-3 pb-1 px-3">

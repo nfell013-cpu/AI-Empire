@@ -1,6 +1,9 @@
 "use client";
 
 import Sidebar from "./sidebar";
+import NotificationBell from "./notification-bell";
+import DarkModeToggle from "./dark-mode-toggle";
+import ToolSearch from "./tool-search";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
@@ -34,6 +37,15 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
     <div className="flex min-h-screen" style={{ background: "var(--bg-primary)" }}>
       <Sidebar userName={user?.name ?? ""} userEmail={user?.email ?? ""} />
       <main className="flex-1 ml-64 min-h-screen">
+        {/* Enhancement #6, #8, #12: Top bar with search, notifications, dark mode */}
+        <header className="sticky top-0 z-30 flex items-center justify-between px-6 py-3"
+          style={{ background: "var(--bg-primary)", borderBottom: "1px solid var(--border)" }}>
+          <ToolSearch />
+          <div className="flex items-center gap-2">
+            <DarkModeToggle />
+            <NotificationBell />
+          </div>
+        </header>
         {children}
       </main>
     </div>

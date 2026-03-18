@@ -1,16 +1,20 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { signIn } from "next-auth/react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { Mail, Lock, User, Zap } from "lucide-react";
+import SimpleCaptcha from "@/components/captcha";
 
 export default function SignupForm() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const [form, setForm] = useState({ firstName: "", lastName: "", email: "", password: "", confirmPassword: "" });
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [captchaVerified, setCaptchaVerified] = useState(false);
+  const onCaptchaChange = useCallback((v: boolean) => setCaptchaVerified(v), []);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -27,12 +31,17 @@ export default function SignupForm() {
       setError("Password must be at least 6 characters.");
       return;
     }
+    if (!captchaVerified) {
+      setError("Please solve the CAPTCHA.");
+      return;
+    }
     setLoading(true);
+    const referralCode = searchParams.get("ref") || undefined;
     try {
       const res = await fetch("/api/signup", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: form.email, password: form.password, firstName: form.firstName, lastName: form.lastName }),
+        body: JSON.stringify({ email: form.email, password: form.password, firstName: form.firstName, lastName: form.lastName, referralCode }),
       });
       const data = await res.json();
       if (!res.ok) {
@@ -113,6 +122,11 @@ export default function SignupForm() {
               <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4" style={{ color: "var(--text-secondary)" }} />
               <input name="confirmPassword" type="password" value={form.confirmPassword} onChange={handleChange} required placeholder="Repeat password" className={inputClass} style={inputStyle} />
             </div>
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium mb-2" style={{ color: "var(--text-secondary)" }}>Verify you&apos;re human</label>
+            <SimpleCaptcha onVerified={onCaptchaChange} />
           </div>
 
           {error && <p className="text-red-400 text-sm text-center">{error}</p>}

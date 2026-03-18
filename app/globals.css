@@ -2,7 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
+/* Enhancement #6: Dark/Light Mode Support */
+:root, [data-theme="dark"] {
   --accent: #6366f1;
   --accent-light: #818cf8;
   --accent-dark: #4f46e5;
@@ -13,6 +14,19 @@
   --border: #2a2a3a;
   --text-primary: #f0f0ff;
   --text-secondary: #8888aa;
+}
+
+[data-theme="light"] {
+  --accent: #6366f1;
+  --accent-light: #4f46e5;
+  --accent-dark: #4338ca;
+  --bg-primary: #f8f9fc;
+  --bg-secondary: #ffffff;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f3f4f6;
+  --border: #e5e7eb;
+  --text-primary: #111827;
+  --text-secondary: #6b7280;
 }
 
 body {

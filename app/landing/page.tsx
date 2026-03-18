@@ -2,6 +2,8 @@
 
 import Link from 'next/link';
 import { motion } from 'framer-motion';
+import Testimonials from '@/components/testimonials';
+import LiveChatWidget from '@/components/live-chat';
 import {
   Zap, FileText, ShoppingBag, HardHat, Handshake, Leaf, PawPrint, Eye, Trophy,
   Globe, Search, Database, ShieldCheck, BarChart2, MessageSquare, Music,
@@ -269,6 +271,9 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* Testimonials Section */}
+      <Testimonials />
+
       {/* CTA Section */}
       <section className="py-20 px-6">
         <div className="max-w-4xl mx-auto text-center">
@@ -287,16 +292,26 @@ export default function LandingPage() {
 
       {/* Footer */}
       <footer className="py-12 px-6 border-t border-[var(--color-border)]">
-        <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="p-2 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600">
-              <Zap className="w-5 h-5 text-white" />
+        <div className="max-w-7xl mx-auto">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+            <div className="flex items-center gap-3">
+              <div className="p-2 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600">
+                <Zap className="w-5 h-5 text-white" />
+              </div>
+              <span className="text-lg font-bold text-white">AI Empire</span>
             </div>
-            <span className="text-lg font-bold text-white">AI Empire</span>
+            <div className="flex items-center gap-6 text-sm">
+              <Link href="/terms" className="text-gray-400 hover:text-white transition-colors">Terms of Service</Link>
+              <Link href="/privacy" className="text-gray-400 hover:text-white transition-colors">Privacy Policy</Link>
+              <Link href="/blog" className="text-gray-400 hover:text-white transition-colors">Blog</Link>
+            </div>
+            <p className="text-gray-500 text-sm">© 2026 AI Empire. All rights reserved.</p>
           </div>
-          <p className="text-gray-500 text-sm">© 2026 AI Empire. All rights reserved.</p>
         </div>
       </footer>
+
+      {/* Live Chat Widget */}
+      <LiveChatWidget />
     </div>
   );
 }

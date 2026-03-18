@@ -1,45 +1,65 @@
-export const dynamic = "force-dynamic";
-import { NextResponse } from "next/server";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth-options";
-import { prisma } from "@/lib/db";
+// Enhanced User Profile API with new fields
+import { NextRequest, NextResponse } from 'next/server';
+import { getServerSession } from 'next-auth';
+import { authOptions } from '@/lib/auth-options';
+import { prisma } from '@/lib/db';
 
 export async function GET() {
   try {
     const session = await getServerSession(authOptions);
-    if (!session?.user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    if (!session?.user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    const userId = (session.user as any).id;
 
     const user = await prisma.user.findUnique({
-      where: { email: session.user.email ?? "" },
-      include: {
-        scans: {
-          orderBy: { createdAt: "desc" },
-          take: 10,
-          select: { id: true, fileName: true, status: true, createdAt: true, isFree: true },
-        },
+      where: { id: userId },
+      select: {
+        id: true, email: true, firstName: true, lastName: true,
+        scanCount: true, freeScanUsed: true, tokens: true,
+        createdAt: true, avatarUrl: true, bio: true,
+        emailVerified: true, twoFactorEnabled: true,
+        favoriteTools: true, recentTools: true,
+        referralCode: true, referralTokensEarned: true,
+        subscriptions: true, role: true,
       },
     });
 
-    if (!user) return NextResponse.json({ error: "User not found" }, { status: 404 });
+    if (!user) return NextResponse.json({ error: 'User not found' }, { status: 404 });
 
-    return NextResponse.json({
-      id: user.id,
-      email: user.email,
-      firstName: user.firstName,
-      lastName: user.lastName,
-      scanCount: user.scanCount,
-      freeScanUsed: user.freeScanUsed,
-      createdAt: user.createdAt.toISOString(),
-      recentScans: user.scans.map((s: { id: string; fileName: string; status: string; createdAt: Date; isFree: boolean }) => ({
-        id: s.id,
-        fileName: s.fileName,
-        status: s.status,
-        createdAt: s.createdAt.toISOString(),
-        isFree: s.isFree,
-      })),
+    const recentScans = await prisma.scan.findMany({
+      where: { userId },
+      orderBy: { createdAt: 'desc' },
+      take: 5,
+      select: { id: true, fileName: true, status: true, createdAt: true, isFree: true },
     });
-  } catch (err) {
-    console.error("Profile error:", err);
-    return NextResponse.json({ error: "Internal server error" }, { status: 500 });
+
+    return NextResponse.json({ ...user, recentScans });
+  } catch (error) {
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
+  }
+}
+
+// Enhancement #7: Update profile (avatar, bio, name)
+export async function PUT(request: NextRequest) {
+  try {
+    const session = await getServerSession(authOptions);
+    if (!session?.user) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    const userId = (session.user as any).id;
+    const body = await request.json();
+
+    const updateData: any = {};
+    if (body.firstName !== undefined) updateData.firstName = body.firstName;
+    if (body.lastName !== undefined) updateData.lastName = body.lastName;
+    if (body.bio !== undefined) updateData.bio = body.bio;
+    if (body.avatarUrl !== undefined) updateData.avatarUrl = body.avatarUrl;
+
+    const user = await prisma.user.update({
+      where: { id: userId },
+      data: updateData,
+      select: { id: true, email: true, firstName: true, lastName: true, bio: true, avatarUrl: true },
+    });
+
+    return NextResponse.json(user);
+  } catch (error) {
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
 }
