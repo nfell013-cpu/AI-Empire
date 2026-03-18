@@ -2,6 +2,7 @@ export const dynamic = "force-dynamic";
 import { NextRequest, NextResponse } from "next/server";
 import { stripe } from "@/lib/stripe";
 import { prisma } from "@/lib/db";
+import { Prisma } from "@prisma/client";
 import { notifyNewAdSubmission } from "@/lib/notifications";
 import { addTokens } from "@/lib/tokens";
 
@@ -176,7 +177,7 @@ export async function POST(request: NextRequest) {
 
         // Find user with this subscription in their subscriptions JSON
         const allUsers = await prisma.user.findMany({
-          where: { subscriptions: { not: null } },
+          where: { NOT: { subscriptions: { equals: Prisma.DbNull } } },
           select: { id: true, subscriptions: true },
         });
 
@@ -214,7 +215,7 @@ export async function POST(request: NextRequest) {
       const subscriptionId = subscription.id;
 
       const allUsers = await prisma.user.findMany({
-        where: { subscriptions: { not: null } },
+        where: { NOT: { subscriptions: { equals: Prisma.DbNull } } },
         select: { id: true, subscriptions: true },
       });
 

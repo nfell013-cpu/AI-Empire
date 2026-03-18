@@ -15,7 +15,7 @@ export async function POST(request: Request) {
 
     const user = await prisma.user.findUnique({
       where: { email: session.user.email },
-      select: { id: true, coachLogicSubscribed: true, coachLogicFreePlanUsed: true, coachLogicSubExpiresAt: true },
+      select: { id: true, role: true, coachLogicSubscribed: true, coachLogicFreePlanUsed: true, coachLogicSubExpiresAt: true },
     });
 
     if (!user) {

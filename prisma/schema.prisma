@@ -1,7 +1,7 @@
 generator client {
     provider = "prisma-client-js"
     binaryTargets = ["native", "linux-musl-arm64-openssl-3.0.x"]
-    output = "/home/ubuntu/ai_empire/nextjs_space/node_modules/.prisma/client"
+    output = "../node_modules/.prisma/client"
 }
 
 datasource db {
@@ -124,6 +124,8 @@ model User {
   memeMintCreationsRel MemeMintCreation[]
   cryptoPayments       CryptoPayment[]
   adViews              AdView[]
+  // Generic subscriptions JSON field for 45-app architecture
+  subscriptions        Json?
   // Token system
   tokens               Int       @default(100)
   tokenTransactions    TokenTransaction[]
