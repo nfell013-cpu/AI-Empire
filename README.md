@@ -191,3 +191,34 @@ AI Empire includes a complete ad-supported token economy where users can earn fr
 
 ### Documentation
 See [docs/AD_SYSTEM.md](docs/AD_SYSTEM.md) for complete documentation including API reference, pricing formula, and setup guide.
+
+
+
+---
+
+## Backup & Recovery
+
+A master backup ZIP is available at `/home/ubuntu/ai_empire_master_backup.zip`.
+
+### Quick Restore
+```bash
+unzip ai_empire_master_backup.zip -d ai_empire_restored
+cd ai_empire_restored
+npm install
+cp .env.example .env   # Edit with your credentials
+npx prisma generate && npx prisma db push
+npm run build && npm start
+```
+
+### Backup Files
+- `BACKUP_MANIFEST.md` — What's included/excluded in the backup
+- `RESTORE_INSTRUCTIONS.md` — Detailed step-by-step restore guide
+- `BACKUP_SUMMARY.txt` — Quick reference backup info
+- `scripts/verify-backup.sh` — Backup verification script
+
+### Best Practices
+- Keep the backup ZIP in a secure, separate location (cloud storage, external drive)
+- Never commit `.env` files to version control or include in backups
+- After restoring, always run `npx prisma generate` before building
+- Test the restored installation with Stripe test cards before going live
+- Create new backups after significant changes
