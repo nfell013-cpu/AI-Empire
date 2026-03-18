@@ -5,30 +5,68 @@ import { usePathname } from "next/navigation";
 import { signOut } from "next-auth/react";
 import { useState, useEffect } from "react";
 import {
-  FileText, Cpu, Brain, Sparkles, Code2, Image, Video, Music,
+  FileText, Cpu, Brain, Sparkles, Code2, Image as ImageIcon, Video, Music,
   Globe, Search, Database, ShieldCheck, BarChart2, MessageSquare,
   Zap, LogOut, ChevronRight, Lock, LayoutDashboard, User, ShoppingBag, HardHat,
-  Handshake, Leaf, PawPrint, Eye, Trophy, Coins
+  Handshake, Leaf, PawPrint, Eye, Trophy, Coins, Mic, Mail, Dumbbell,
+  BookOpen, Megaphone, Bug, FileBarChart, UtensilsCrossed, TrendingUp,
+  Pencil, Scale, GraduationCap, Share2, PenTool, ListChecks, Shield,
+  Braces, Plane, Receipt, Network, Building, HeartPulse, Activity
 } from "lucide-react";
 import EarnTokensButton from "./ads/earn-tokens-button";
 
-const TOOLS = [
-  { id: 1, name: "Legalese", description: "PDF Contract Scanner", icon: FileText, href: "/legalese", active: true },
-  { id: 2, name: "FlipScore", description: "Thrift Item Scanner", icon: ShoppingBag, href: "/flipscore", active: true },
-  { id: 3, name: "TradeAce", description: "Vocational Exam Prep", icon: HardHat, href: "/tradeace", active: true },
-  { id: 4, name: "DealDone", description: "Brand Negotiation AI", icon: Handshake, href: "/dealdone", active: true },
-  { id: 5, name: "LeafCheck", description: "Plant Species ID", icon: Leaf, href: "/leafcheck", active: true },
-  { id: 6, name: "PawPair", description: "Pet Compatibility Quiz", icon: PawPrint, href: "/pawpair", active: true },
-  { id: 7, name: "VisionLens", description: "Object ID & Valuation", icon: Eye, href: "/visionlens", active: true },
-  { id: 8, name: "CoachLogic", description: "Practice Plan Generator", icon: Trophy, href: "/coachlogic", active: true },
-  { id: 9, name: "GlobeGuide", description: "AI Travel Itinerary", icon: Globe, href: "/globeguide", active: true },
-  { id: 10, name: "SkillScope", description: "Resume Analyzer", icon: Search, href: "/skillscope", active: true },
-  { id: 11, name: "DataVault", description: "Finance Analyzer", icon: Database, href: "/datavault", active: true },
-  { id: 12, name: "GuardianAI", description: "Reputation Monitor", icon: ShieldCheck, href: "/guardianai", active: true },
-  { id: 13, name: "TrendPulse", description: "Market Predictor", icon: BarChart2, href: "/trendpulse", active: true },
-  { id: 14, name: "SoundForge", description: "AI Music Generator", icon: Music, href: "/soundforge", active: true },
-  { id: 15, name: "MemeMint", description: "AI Meme Generator", icon: MessageSquare, href: "/mememint", active: true },
+const OLD_TOOLS = [
+  { id: "old-1", name: "Legalese", description: "PDF Contract Scanner", icon: FileText, href: "/legalese", active: true, category: "Legacy" },
+  { id: "old-2", name: "FlipScore", description: "Thrift Item Scanner", icon: ShoppingBag, href: "/flipscore", active: true, category: "Legacy" },
+  { id: "old-3", name: "TradeAce", description: "Vocational Exam Prep", icon: HardHat, href: "/tradeace", active: true, category: "Legacy" },
+  { id: "old-4", name: "DealDone", description: "Brand Negotiation AI", icon: Handshake, href: "/dealdone", active: true, category: "Legacy" },
+  { id: "old-5", name: "LeafCheck", description: "Plant Species ID", icon: Leaf, href: "/leafcheck", active: true, category: "Legacy" },
+  { id: "old-6", name: "PawPair", description: "Pet Compatibility Quiz", icon: PawPrint, href: "/pawpair", active: true, category: "Legacy" },
+  { id: "old-7", name: "VisionLens", description: "Object ID & Valuation", icon: Eye, href: "/visionlens", active: true, category: "Legacy" },
+  { id: "old-8", name: "CoachLogic", description: "Practice Plan Generator", icon: Trophy, href: "/coachlogic", active: true, category: "Legacy" },
+  { id: "old-9", name: "GlobeGuide", description: "AI Travel Itinerary", icon: Globe, href: "/globeguide", active: true, category: "Legacy" },
+  { id: "old-10", name: "SkillScope", description: "Resume Analyzer", icon: Search, href: "/skillscope", active: true, category: "Legacy" },
+  { id: "old-11", name: "DataVault", description: "Finance Analyzer", icon: Database, href: "/datavault", active: true, category: "Legacy" },
+  { id: "old-12", name: "GuardianAI", description: "Reputation Monitor", icon: ShieldCheck, href: "/guardianai", active: true, category: "Legacy" },
+  { id: "old-13", name: "TrendPulse", description: "Market Predictor", icon: BarChart2, href: "/trendpulse", active: true, category: "Legacy" },
+  { id: "old-14", name: "SoundForge", description: "AI Music Generator", icon: Music, href: "/soundforge", active: true, category: "Legacy" },
+  { id: "old-15", name: "MemeMint", description: "AI Meme Generator", icon: MessageSquare, href: "/mememint", active: true, category: "Legacy" },
 ];
+
+const NEW_TOOLS = [
+  { id: 1, name: "CodeAudit", description: "Code Review & Security Scanner", icon: Code2, href: "/codeaudit", active: true, category: "Developer Tools" },
+  { id: 2, name: "PixelCraft", description: "AI Image Generation Studio", icon: ImageIcon, href: "/pixelcraft", active: true, category: "Creative" },
+  { id: 3, name: "DocuWise", description: "Document Summarizer", icon: FileText, href: "/docuwise", active: true, category: "Productivity" },
+  { id: 4, name: "ChatGenius", description: "Custom Chatbot Builder", icon: MessageSquare, href: "/chatgenius", active: true, category: "Business" },
+  { id: 5, name: "VoiceBox", description: "Text-to-Speech Engine", icon: Mic, href: "/voicebox", active: true, category: "Creative" },
+  { id: 6, name: "BrandSpark", description: "Brand Name Generator", icon: Sparkles, href: "/brandspark", active: true, category: "Marketing" },
+  { id: 7, name: "DataWeave", description: "CSV & Data Analyst", icon: BarChart2, href: "/dataweave", active: true, category: "Data & Analytics" },
+  { id: 8, name: "MailPilot", description: "AI Email Composer", icon: Mail, href: "/mailpilot", active: true, category: "Productivity" },
+  { id: 9, name: "FitForge", description: "AI Fitness Planner", icon: Activity, href: "/fitforge", active: true, category: "Health" },
+  { id: 10, name: "LexiLearn", description: "Language Learning AI", icon: BookOpen, href: "/lexilearn", active: true, category: "Education" },
+  { id: 11, name: "AdCopy", description: "Ad Copywriter AI", icon: Megaphone, href: "/adcopy", active: true, category: "Marketing" },
+  { id: 12, name: "BugBuster", description: "AI Debugging Assistant", icon: Bug, href: "/bugbuster", active: true, category: "Developer Tools" },
+  { id: 13, name: "PitchDeck", description: "Investor Pitch Generator", icon: FileBarChart, href: "/pitchdeck", active: true, category: "Business" },
+  { id: 14, name: "RecipeRx", description: "AI Recipe Generator", icon: UtensilsCrossed, href: "/reciperx", active: true, category: "Lifestyle" },
+  { id: 15, name: "StockSense", description: "Market Analysis AI", icon: TrendingUp, href: "/stocksense", active: true, category: "Finance" },
+  { id: 16, name: "SketchAI", description: "UI/UX Design Assistant", icon: Pencil, href: "/sketchai", active: true, category: "Creative" },
+  { id: 17, name: "ContractIQ", description: "Contract Generator", icon: Scale, href: "/contractiq", active: true, category: "Legal" },
+  { id: 18, name: "StudyBlitz", description: "Study Guide Creator", icon: GraduationCap, href: "/studyblitz", active: true, category: "Education" },
+  { id: 19, name: "Socialize", description: "Social Media Strategist", icon: Share2, href: "/socialize", active: true, category: "Marketing" },
+  { id: 20, name: "SEOMaster", description: "SEO Optimization Tool", icon: Search, href: "/seomaster", active: true, category: "Marketing" },
+  { id: 21, name: "WriteFlow", description: "AI Content Writer", icon: PenTool, href: "/writeflow", active: true, category: "Creative" },
+  { id: 22, name: "VideoSync", description: "Video Production AI", icon: Video, href: "/videosync", active: true, category: "Creative" },
+  { id: 23, name: "TaskFlow", description: "Project Management AI", icon: ListChecks, href: "/taskflow", active: true, category: "Productivity" },
+  { id: 24, name: "SecureNet", description: "Cybersecurity Assessment", icon: Shield, href: "/securenet", active: true, category: "Security" },
+  { id: 25, name: "APIGen", description: "API Generator", icon: Braces, href: "/apigen", active: true, category: "Developer Tools" },
+  { id: 26, name: "TravelMate", description: "Travel Planner AI", icon: Plane, href: "/travelmate", active: true, category: "Lifestyle" },
+  { id: 27, name: "InvoicePro", description: "Invoice Generator", icon: Receipt, href: "/invoicepro", active: true, category: "Business" },
+  { id: 28, name: "MindMap", description: "Mind Mapping Tool", icon: Network, href: "/mindmap", active: true, category: "Productivity" },
+  { id: 29, name: "RealtorIQ", description: "Real Estate Analyzer", icon: Building, href: "/realtoriq", active: true, category: "Finance" },
+  { id: 30, name: "HealthPulse", description: "Health & Wellness AI", icon: HeartPulse, href: "/healthpulse", active: true, category: "Health" },
+];
+
+const TOOLS = [...NEW_TOOLS, ...OLD_TOOLS];
 
 interface SidebarProps {
   userName?: string;
@@ -59,7 +97,7 @@ export default function Sidebar({ userName, userEmail }: SidebarProps) {
         </div>
         <div>
           <h1 className="font-bold text-base text-gradient">AI Empire</h1>
-          <p className="text-xs" style={{ color: "var(--text-secondary)" }}>15 AI Tools</p>
+          <p className="text-xs" style={{ color: "var(--text-secondary)" }}>45 AI Tools</p>
         </div>
       </div>
 
