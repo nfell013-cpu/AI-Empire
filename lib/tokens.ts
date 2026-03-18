@@ -10,7 +10,7 @@ const tools = productsConfig.tools as Array<{ slug: string; tier: string; name: 
 export function getTokenCost(toolSlug: string): number {
   const tool = tools.find(t => t.slug === toolSlug);
   if (!tool) {
-    // For legacy tools not in the 30-tool config, default to standard tier cost
+    // For tools not in the 45-tool config, default to standard tier cost
     return tokenCosts.standard || 25;
   }
   return tokenCosts[tool.tier] || 25;

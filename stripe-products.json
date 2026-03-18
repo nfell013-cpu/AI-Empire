@@ -1,0 +1,493 @@
+{
+  "createdAt": "2026-03-18T02:41:24.845Z",
+  "mode": "🔴 LIVE",
+  "tokenPacks": [
+    {
+      "id": "pack_100",
+      "name": "100 Tokens",
+      "tokens": 100,
+      "priceInCents": 499,
+      "popular": false,
+      "stripeProductId": "prod_UAV3pCtTfDOb1r",
+      "stripePriceId": "price_1TCA2zC3LZVzOgF2H2A9dEOf"
+    },
+    {
+      "id": "pack_500",
+      "name": "500 Tokens",
+      "tokens": 500,
+      "priceInCents": 1999,
+      "popular": false,
+      "stripeProductId": "prod_UAV3MkCU5Ksr4O",
+      "stripePriceId": "price_1TCA2zC3LZVzOgF2suGZYuKC"
+    },
+    {
+      "id": "pack_1000",
+      "name": "1,000 Tokens",
+      "tokens": 1000,
+      "priceInCents": 3499,
+      "popular": true,
+      "stripeProductId": "prod_UAV352YyUJMY3t",
+      "stripePriceId": "price_1TCA2zC3LZVzOgF2zvPXaQEs"
+    },
+    {
+      "id": "pack_5000",
+      "name": "5,000 Tokens",
+      "tokens": 5000,
+      "priceInCents": 14999,
+      "popular": false,
+      "stripeProductId": "prod_UAV3laMfH5U1aW",
+      "stripePriceId": "price_1TCA30C3LZVzOgF2vFHnhryK"
+    },
+    {
+      "id": "pack_10000",
+      "name": "10,000 Tokens",
+      "tokens": 10000,
+      "priceInCents": 24999,
+      "popular": false,
+      "stripeProductId": "prod_UAV3qRappTRyls",
+      "stripePriceId": "price_1TCA30C3LZVzOgF2Zb70DIv5"
+    }
+  ],
+  "individualApps": [
+    {
+      "id": 1,
+      "name": "CodeAudit",
+      "slug": "codeaudit",
+      "tier": "premium",
+      "pricePerMonth": 9.99,
+      "stripeProductId": "prod_UAV3rykIe4ppcg",
+      "stripePriceId": "price_1TCA31C3LZVzOgF2hZululNn"
+    },
+    {
+      "id": 2,
+      "name": "PixelCraft",
+      "slug": "pixelcraft",
+      "tier": "premium",
+      "pricePerMonth": 9.99,
+      "stripeProductId": "prod_UAV3fT83Ey9txj",
+      "stripePriceId": "price_1TCA31C3LZVzOgF2NH89GGDX"
+    },
+    {
+      "id": 3,
+      "name": "DocuWise",
+      "slug": "docuwise",
+      "tier": "standard",
+      "pricePerMonth": 9.99,
+      "stripeProductId": "prod_UAV3x12fTy1vxI",
+      "stripePriceId": "price_1TCA31C3LZVzOgF2ODHObj4V"
+    },
+    {
+      "id": 4,
+      "name": "ChatGenius",
+      "slug": "chatgenius",
+      "tier": "enterprise",
+      "pricePerMonth": 9.99,
+      "stripeProductId": "prod_UAV3DTdEVfODPH",
+      "stripePriceId": "price_1TCA32C3LZVzOgF2eVmZpJTX"
+    },
+    {
+      "id": 5,
+      "name": "VoiceBox",
+      "slug": "voicebox",
+      "tier": "premium",
+      "pricePerMonth": 9.99,
+      "stripeProductId": "prod_UAV3js8gwAsL5C",
+      "stripePriceId": "price_1TCA32C3LZVzOgF2rsiVOvgz"
+    },
+    {
+      "id": 6,
+      "name": "BrandSpark",
+      "slug": "brandspark",
+      "tier": "standard",
+      "pricePerMonth": 9.99,
+      "stripeProductId": "prod_UAV3N5ZR7ECent",
+      "stripePriceId": "price_1TCA33C3LZVzOgF29rLwEJJ6"
+    },
+    {
+      "id": 7,
+      "name": "DataWeave",
+      "slug": "dataweave",
+      "tier": "premium",
+      "pricePerMonth": 9.99,
+      "stripeProductId": "prod_UAV3iWmzBIhyLo",
+      "stripePriceId": "price_1TCA33C3LZVzOgF2IdLZy6s0"
+    },
+    {
+      "id": 8,
+      "name": "MailPilot",
+      "slug": "mailpilot",
+      "tier": "basic",
+      "pricePerMonth": 9.99,
+      "stripeProductId": "prod_UAV33abmwXXgVm",
+      "stripePriceId": "price_1TCA33C3LZVzOgF205eYaSvK"
+    },
+    {
+      "id": 9,
+      "name": "FitForge",
+      "slug": "fitforge",
+      "tier": "standard",
+      "pricePerMonth": 9.99,
+      "stripeProductId": "prod_UAV3lJaZVRZPe7",
+      "stripePriceId": "price_1TCA34C3LZVzOgF2EhV8ztkj"
+    },
+    {
+      "id": 10,
+      "name": "LexiLearn",
+      "slug": "lexilearn",
+      "tier": "standard",
+      "pricePerMonth": 9.99,
+      "stripeProductId": "prod_UAV3JeiAUdAHk1",
+      "stripePriceId": "price_1TCA34C3LZVzOgF2ks2HjOFG"
+    },
+    {
+      "id": 11,
+      "name": "AdCopy",
+      "slug": "adcopy",
+      "tier": "standard",
+      "pricePerMonth": 9.99,
+      "stripeProductId": "prod_UAV3XCl0WISl0j",
+      "stripePriceId": "price_1TCA34C3LZVzOgF2QAlnH9n5"
+    },
+    {
+      "id": 12,
+      "name": "BugBuster",
+      "slug": "bugbuster",
+      "tier": "premium",
+      "pricePerMonth": 9.99,
+      "stripeProductId": "prod_UAV3D1BdYpNcqL",
+      "stripePriceId": "price_1TCA35C3LZVzOgF2iAlpC50b"
+    },
+    {
+      "id": 13,
+      "name": "PitchDeck",
+      "slug": "pitchdeck",
+      "tier": "enterprise",
+      "pricePerMonth": 9.99,
+      "stripeProductId": "prod_UAV3xTXiFXjO0g",
+      "stripePriceId": "price_1TCA35C3LZVzOgF2P2ubitsU"
+    },
+    {
+      "id": 14,
+      "name": "RecipeRx",
+      "slug": "reciperx",
+      "tier": "basic",
+      "pricePerMonth": 9.99,
+      "stripeProductId": "prod_UAV379L9sJYWXr",
+      "stripePriceId": "price_1TCA36C3LZVzOgF2yxp0SA8q"
+    },
+    {
+      "id": 15,
+      "name": "StockSense",
+      "slug": "stocksense",
+      "tier": "enterprise",
+      "pricePerMonth": 9.99,
+      "stripeProductId": "prod_UAV37xvaZNvah8",
+      "stripePriceId": "price_1TCA36C3LZVzOgF2mtMYOn5T"
+    },
+    {
+      "id": 16,
+      "name": "SketchAI",
+      "slug": "sketchai",
+      "tier": "premium",
+      "pricePerMonth": 9.99,
+      "stripeProductId": "prod_UAV3Gr0wQDzUZM",
+      "stripePriceId": "price_1TCA36C3LZVzOgF2NqDILQSa"
+    },
+    {
+      "id": 17,
+      "name": "ContractIQ",
+      "slug": "contractiq",
+      "tier": "enterprise",
+      "pricePerMonth": 9.99,
+      "stripeProductId": "prod_UAV3RVoDkUrmpD",
+      "stripePriceId": "price_1TCA37C3LZVzOgF2V4YrXfew"
+    },
+    {
+      "id": 18,
+      "name": "StudyBlitz",
+      "slug": "studyblitz",
+      "tier": "basic",
+      "pricePerMonth": 9.99,
+      "stripeProductId": "prod_UAV3IQDkRjZ37D",
+      "stripePriceId": "price_1TCA37C3LZVzOgF2qpvA9lF1"
+    },
+    {
+      "id": 19,
+      "name": "Socialize",
+      "slug": "socialize",
+      "tier": "standard",
+      "pricePerMonth": 9.99,
+      "stripeProductId": "prod_UAV3A1WhS3vn4l",
+      "stripePriceId": "price_1TCA38C3LZVzOgF2sWi8htbt"
+    },
+    {
+      "id": 20,
+      "name": "SEOMaster",
+      "slug": "seomaster",
+      "tier": "standard",
+      "pricePerMonth": 9.99,
+      "stripeProductId": "prod_UAV38VkthzBswX",
+      "stripePriceId": "price_1TCA38C3LZVzOgF2rTQsZIf1"
+    },
+    {
+      "id": 21,
+      "name": "WriteFlow",
+      "slug": "writeflow",
+      "tier": "standard",
+      "pricePerMonth": 9.99,
+      "stripeProductId": "prod_UAV3MOoOadk2QQ",
+      "stripePriceId": "price_1TCA38C3LZVzOgF2dFCcEZJi"
+    },
+    {
+      "id": 22,
+      "name": "VideoSync",
+      "slug": "videosync",
+      "tier": "premium",
+      "pricePerMonth": 9.99,
+      "stripeProductId": "prod_UAV3UqNBmOJF2N",
+      "stripePriceId": "price_1TCA39C3LZVzOgF25jN6HStK"
+    },
+    {
+      "id": 23,
+      "name": "TaskFlow",
+      "slug": "taskflow",
+      "tier": "standard",
+      "pricePerMonth": 9.99,
+      "stripeProductId": "prod_UAV3X2Euk0IjQS",
+      "stripePriceId": "price_1TCA39C3LZVzOgF2OAbrq7wb"
+    },
+    {
+      "id": 24,
+      "name": "SecureNet",
+      "slug": "securenet",
+      "tier": "enterprise",
+      "pricePerMonth": 9.99,
+      "stripeProductId": "prod_UAV3oo72YG5yhS",
+      "stripePriceId": "price_1TCA3AC3LZVzOgF2O92cdfew"
+    },
+    {
+      "id": 25,
+      "name": "APIGen",
+      "slug": "apigen",
+      "tier": "premium",
+      "pricePerMonth": 9.99,
+      "stripeProductId": "prod_UAV3OniEHVoSsY",
+      "stripePriceId": "price_1TCA3AC3LZVzOgF22DMov52h"
+    },
+    {
+      "id": 26,
+      "name": "TravelMate",
+      "slug": "travelmate",
+      "tier": "standard",
+      "pricePerMonth": 9.99,
+      "stripeProductId": "prod_UAV3MrO54pY2iS",
+      "stripePriceId": "price_1TCA3AC3LZVzOgF2iogulnZa"
+    },
+    {
+      "id": 27,
+      "name": "InvoicePro",
+      "slug": "invoicepro",
+      "tier": "basic",
+      "pricePerMonth": 9.99,
+      "stripeProductId": "prod_UAV3ao5w6CFlyD",
+      "stripePriceId": "price_1TCA3BC3LZVzOgF2bknPpCva"
+    },
+    {
+      "id": 28,
+      "name": "MindMap",
+      "slug": "mindmap",
+      "tier": "basic",
+      "pricePerMonth": 9.99,
+      "stripeProductId": "prod_UAV3NB1qYtZqpc",
+      "stripePriceId": "price_1TCA3BC3LZVzOgF2AtvAAXpt"
+    },
+    {
+      "id": 29,
+      "name": "RealtorIQ",
+      "slug": "realtoriq",
+      "tier": "enterprise",
+      "pricePerMonth": 9.99,
+      "stripeProductId": "prod_UAV3TE5YTSNc3z",
+      "stripePriceId": "price_1TCA3BC3LZVzOgF2mbW9lLjL"
+    },
+    {
+      "id": 30,
+      "name": "HealthPulse",
+      "slug": "healthpulse",
+      "tier": "premium",
+      "pricePerMonth": 9.99,
+      "stripeProductId": "prod_UAV3hBaObOQjET",
+      "stripePriceId": "price_1TCA3CC3LZVzOgF2ArSd6dxu"
+    },
+    {
+      "id": 31,
+      "name": "Legalese",
+      "slug": "legalese",
+      "tier": "standard",
+      "pricePerMonth": 9.99,
+      "stripeProductId": "prod_UAV3rpwCHtzpLv",
+      "stripePriceId": "price_1TCA3CC3LZVzOgF2NeCMquJu"
+    },
+    {
+      "id": 32,
+      "name": "FlipScore",
+      "slug": "flipscore",
+      "tier": "standard",
+      "pricePerMonth": 9.99,
+      "stripeProductId": "prod_UAV3SykesZNZmA",
+      "stripePriceId": "price_1TCA3DC3LZVzOgF2zYoXVPH3"
+    },
+    {
+      "id": 33,
+      "name": "TradeAce",
+      "slug": "tradeace",
+      "tier": "standard",
+      "pricePerMonth": 9.99,
+      "stripeProductId": "prod_UAV3FUZJNrLuPt",
+      "stripePriceId": "price_1TCA3DC3LZVzOgF20U03cxlp"
+    },
+    {
+      "id": 34,
+      "name": "DealDone",
+      "slug": "dealdone",
+      "tier": "standard",
+      "pricePerMonth": 9.99,
+      "stripeProductId": "prod_UAV3N0QolpuDwQ",
+      "stripePriceId": "price_1TCA3DC3LZVzOgF2fA6OPVNQ"
+    },
+    {
+      "id": 35,
+      "name": "LeafCheck",
+      "slug": "leafcheck",
+      "tier": "standard",
+      "pricePerMonth": 9.99,
+      "stripeProductId": "prod_UAV3WdFupApay4",
+      "stripePriceId": "price_1TCA3EC3LZVzOgF2zgHcQJOB"
+    },
+    {
+      "id": 36,
+      "name": "PawPair",
+      "slug": "pawpair",
+      "tier": "standard",
+      "pricePerMonth": 9.99,
+      "stripeProductId": "prod_UAV3XR8ALkGb7t",
+      "stripePriceId": "price_1TCA3EC3LZVzOgF216ulNIoz"
+    },
+    {
+      "id": 37,
+      "name": "VisionLens",
+      "slug": "visionlens",
+      "tier": "standard",
+      "pricePerMonth": 9.99,
+      "stripeProductId": "prod_UAV3PsVOORPwr5",
+      "stripePriceId": "price_1TCA3EC3LZVzOgF2n624rD0U"
+    },
+    {
+      "id": 38,
+      "name": "CoachLogic",
+      "slug": "coachlogic",
+      "tier": "standard",
+      "pricePerMonth": 9.99,
+      "stripeProductId": "prod_UAV3Lc4I9jPf2L",
+      "stripePriceId": "price_1TCA3FC3LZVzOgF2RdEZPOtj"
+    },
+    {
+      "id": 39,
+      "name": "GlobeGuide",
+      "slug": "globeguide",
+      "tier": "standard",
+      "pricePerMonth": 9.99,
+      "stripeProductId": "prod_UAV3DVEo8Z79xf",
+      "stripePriceId": "price_1TCA3FC3LZVzOgF2805vzcKj"
+    },
+    {
+      "id": 40,
+      "name": "SkillScope",
+      "slug": "skillscope",
+      "tier": "standard",
+      "pricePerMonth": 9.99,
+      "stripeProductId": "prod_UAV3kSUg9vktvl",
+      "stripePriceId": "price_1TCA3GC3LZVzOgF2hhlc8Ihq"
+    },
+    {
+      "id": 41,
+      "name": "DataVault",
+      "slug": "datavault",
+      "tier": "standard",
+      "pricePerMonth": 9.99,
+      "stripeProductId": "prod_UAV3HA11u9LjDZ",
+      "stripePriceId": "price_1TCA3GC3LZVzOgF2W6Bb6QdF"
+    },
+    {
+      "id": 42,
+      "name": "GuardianAI",
+      "slug": "guardianai",
+      "tier": "standard",
+      "pricePerMonth": 9.99,
+      "stripeProductId": "prod_UAV3wyMGq0VLcR",
+      "stripePriceId": "price_1TCA3GC3LZVzOgF2d5VWRylj"
+    },
+    {
+      "id": 43,
+      "name": "TrendPulse",
+      "slug": "trendpulse",
+      "tier": "standard",
+      "pricePerMonth": 9.99,
+      "stripeProductId": "prod_UAV3VtXhrlYxJ2",
+      "stripePriceId": "price_1TCA3HC3LZVzOgF2S2C1I3fR"
+    },
+    {
+      "id": 44,
+      "name": "SoundForge",
+      "slug": "soundforge",
+      "tier": "standard",
+      "pricePerMonth": 9.99,
+      "stripeProductId": "prod_UAV3AindKX1e3W",
+      "stripePriceId": "price_1TCA3HC3LZVzOgF2oTDKoOZV"
+    },
+    {
+      "id": 45,
+      "name": "MemeMint",
+      "slug": "mememint",
+      "tier": "standard",
+      "pricePerMonth": 9.99,
+      "stripeProductId": "prod_UAV30bzBsJazKV",
+      "stripePriceId": "price_1TCA3HC3LZVzOgF2TQC3BEZU"
+    }
+  ],
+  "tieredPlans": [
+    {
+      "id": "plan_basic",
+      "name": "Basic",
+      "appsIncluded": 10,
+      "priceInCents": 2999,
+      "interval": "month",
+      "description": "Access to 10 AI apps of your choice",
+      "popular": false,
+      "stripeProductId": "prod_UAV3C6WaBLDoIL",
+      "stripePriceId": "price_1TCA3IC3LZVzOgF2brfFn8mq"
+    },
+    {
+      "id": "plan_pro",
+      "name": "Pro",
+      "appsIncluded": 25,
+      "priceInCents": 6999,
+      "interval": "month",
+      "description": "Access to 25 AI apps of your choice",
+      "popular": true,
+      "stripeProductId": "prod_UAV32IDqpuIGEb",
+      "stripePriceId": "price_1TCA3IC3LZVzOgF2JRCx4GKI"
+    },
+    {
+      "id": "plan_ultimate",
+      "name": "Ultimate",
+      "appsIncluded": 45,
+      "priceInCents": 9999,
+      "interval": "month",
+      "description": "Unlimited access to all 45 AI apps",
+      "popular": false,
+      "stripeProductId": "prod_UAV3IsPFsVgzEa",
+      "stripePriceId": "price_1TCA3JC3LZVzOgF2A2r1dBJh"
+    }
+  ]
+}

@@ -351,34 +351,206 @@
       "color": "#e11d48",
       "category": "Health & Fitness",
       "productType": "healthpulse_subscription"
+    },
+    {
+      "id": 31,
+      "slug": "legalese",
+      "name": "Legalese",
+      "description": "AI contract scanner & plain-language translator",
+      "tier": "standard",
+      "icon": "FileText",
+      "color": "#7c3aed",
+      "category": "Legal",
+      "productType": "legalese_subscription"
+    },
+    {
+      "id": 32,
+      "slug": "flipscore",
+      "name": "FlipScore",
+      "description": "AI thrift & resale value scanner",
+      "tier": "standard",
+      "icon": "ShoppingBag",
+      "color": "#f59e0b",
+      "category": "E-Commerce",
+      "productType": "flipscore_subscription"
+    },
+    {
+      "id": 33,
+      "slug": "tradeace",
+      "name": "TradeAce",
+      "description": "AI trade exam prep & certification coach",
+      "tier": "standard",
+      "icon": "HardHat",
+      "color": "#ef4444",
+      "category": "Education",
+      "productType": "tradeace_subscription"
+    },
+    {
+      "id": 34,
+      "slug": "dealdone",
+      "name": "DealDone",
+      "description": "AI-powered brand deal negotiation assistant",
+      "tier": "standard",
+      "icon": "Handshake",
+      "color": "#10b981",
+      "category": "Business",
+      "productType": "dealdone_subscription"
+    },
+    {
+      "id": 35,
+      "slug": "leafcheck",
+      "name": "LeafCheck",
+      "description": "AI plant identification & health diagnostics",
+      "tier": "standard",
+      "icon": "Leaf",
+      "color": "#22c55e",
+      "category": "Nature",
+      "productType": "leafcheck_subscription"
+    },
+    {
+      "id": 36,
+      "slug": "pawpair",
+      "name": "PawPair",
+      "description": "AI pet breed matching & personality quiz",
+      "tier": "standard",
+      "icon": "PawPrint",
+      "color": "#f97316",
+      "category": "Lifestyle",
+      "productType": "pawpair_subscription"
+    },
+    {
+      "id": 37,
+      "slug": "visionlens",
+      "name": "VisionLens",
+      "description": "AI object & scene identification from images",
+      "tier": "standard",
+      "icon": "Eye",
+      "color": "#6366f1",
+      "category": "Computer Vision",
+      "productType": "visionlens_subscription"
+    },
+    {
+      "id": 38,
+      "slug": "coachlogic",
+      "name": "CoachLogic",
+      "description": "AI sports coaching & practice plan generator",
+      "tier": "standard",
+      "icon": "Trophy",
+      "color": "#eab308",
+      "category": "Sports",
+      "productType": "coachlogic_subscription"
+    },
+    {
+      "id": 39,
+      "slug": "globeguide",
+      "name": "GlobeGuide",
+      "description": "AI travel itinerary & local guide generator",
+      "tier": "standard",
+      "icon": "Globe",
+      "color": "#0891b2",
+      "category": "Travel",
+      "productType": "globeguide_subscription"
+    },
+    {
+      "id": 40,
+      "slug": "skillscope",
+      "name": "SkillScope",
+      "description": "AI resume analyzer & career skill mapper",
+      "tier": "standard",
+      "icon": "Search",
+      "color": "#8b5cf6",
+      "category": "Career",
+      "productType": "skillscope_subscription"
+    },
+    {
+      "id": 41,
+      "slug": "datavault",
+      "name": "DataVault",
+      "description": "AI personal finance analyzer & budget optimizer",
+      "tier": "standard",
+      "icon": "Database",
+      "color": "#0ea5e9",
+      "category": "Finance",
+      "productType": "datavault_subscription"
+    },
+    {
+      "id": 42,
+      "slug": "guardianai",
+      "name": "GuardianAI",
+      "description": "AI reputation monitoring & brand protection",
+      "tier": "standard",
+      "icon": "ShieldCheck",
+      "color": "#dc2626",
+      "category": "Security",
+      "productType": "guardianai_subscription"
+    },
+    {
+      "id": 43,
+      "slug": "trendpulse",
+      "name": "TrendPulse",
+      "description": "AI market trend predictor & analytics dashboard",
+      "tier": "standard",
+      "icon": "BarChart2",
+      "color": "#14b8a6",
+      "category": "Analytics",
+      "productType": "trendpulse_subscription"
+    },
+    {
+      "id": 44,
+      "slug": "soundforge",
+      "name": "SoundForge",
+      "description": "AI music & audio generation studio",
+      "tier": "standard",
+      "icon": "Music",
+      "color": "#a855f7",
+      "category": "Creative",
+      "productType": "soundforge_subscription"
+    },
+    {
+      "id": 45,
+      "slug": "mememint",
+      "name": "MemeMint",
+      "description": "AI meme generator for viral social content",
+      "tier": "standard",
+      "icon": "MessageSquare",
+      "color": "#22d3ee",
+      "category": "Social Media",
+      "productType": "mememint_subscription"
     }
   ],
   "tokenPackages": [
     {
-      "id": "starter",
-      "name": "Starter",
-      "tokens": 1000,
-      "priceInCents": 999,
+      "id": "pack_100",
+      "name": "100 Tokens",
+      "tokens": 100,
+      "priceInCents": 499,
       "popular": false
     },
     {
-      "id": "pro",
-      "name": "Pro",
-      "tokens": 5000,
-      "priceInCents": 3999,
+      "id": "pack_500",
+      "name": "500 Tokens",
+      "tokens": 500,
+      "priceInCents": 1999,
+      "popular": false
+    },
+    {
+      "id": "pack_1000",
+      "name": "1,000 Tokens",
+      "tokens": 1000,
+      "priceInCents": 3499,
       "popular": true
     },
     {
-      "id": "business",
-      "name": "Business",
-      "tokens": 15000,
-      "priceInCents": 9999,
+      "id": "pack_5000",
+      "name": "5,000 Tokens",
+      "tokens": 5000,
+      "priceInCents": 14999,
       "popular": false
     },
     {
-      "id": "enterprise",
-      "name": "Enterprise",
-      "tokens": 50000,
+      "id": "pack_10000",
+      "name": "10,000 Tokens",
+      "tokens": 10000,
       "priceInCents": 24999,
       "popular": false
     }
@@ -388,5 +560,38 @@
     "standard": 25,
     "premium": 50,
     "enterprise": 100
+  },
+  "tieredPlans": [
+    {
+      "id": "plan_basic",
+      "name": "Basic",
+      "appsIncluded": 10,
+      "priceInCents": 2999,
+      "interval": "month",
+      "description": "Access to 10 AI apps of your choice",
+      "popular": false
+    },
+    {
+      "id": "plan_pro",
+      "name": "Pro",
+      "appsIncluded": 25,
+      "priceInCents": 6999,
+      "interval": "month",
+      "description": "Access to 25 AI apps of your choice",
+      "popular": true
+    },
+    {
+      "id": "plan_ultimate",
+      "name": "Ultimate",
+      "appsIncluded": 45,
+      "priceInCents": 9999,
+      "interval": "month",
+      "description": "Unlimited access to all 45 AI apps",
+      "popular": false
+    }
+  ],
+  "individualAppPrice": {
+    "priceInCents": 999,
+    "interval": "month"
   }
 }

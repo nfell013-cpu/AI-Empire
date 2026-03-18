@@ -1,112 +1,86 @@
-# AI Empire — Stripe Setup Guide (v2: 30 Tools)
+# Stripe Setup — AI Empire (45 Apps)
 
-> **Updated for the 30-tool architecture.** Subscriptions are now managed via a generic `subscriptions` JSON field and the automated setup script.
+## Quick Setup
 
----
-
-## 1. Getting Your API Keys
-
-1. Go to [Stripe Dashboard → Developers → API Keys](https://dashboard.stripe.com/apikeys)
-2. Copy your **Publishable key** (`pk_test_...`) and **Secret key** (`sk_test_...`)
-3. Add them to `.env`:
-
-```env
-NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_test_...
-STRIPE_SECRET_KEY=sk_test_...
-```
-
----
-
-## 2. Create Products Automatically
-
-Instead of manually creating products in the Stripe Dashboard, run the setup script:
+### 1. Run the Product Setup Script
 
 ```bash
-# Preview (no API calls)
+# Dry run (preview only)
 node scripts/setup-stripe-products.js --dry-run
 
-# Create products in test mode
-STRIPE_SECRET_KEY=sk_test_XXXXX node scripts/setup-stripe-products.js
+# Test mode
+STRIPE_SECRET_KEY=sk_test_xxx node scripts/setup-stripe-products.js
 
-# Create products in live mode
-STRIPE_SECRET_KEY=sk_live_XXXXX node scripts/setup-stripe-products.js --live
+# Live mode
+STRIPE_SECRET_KEY=sk_live_xxx node scripts/setup-stripe-products.js --live
 ```
 
-The script reads `config/products.json` and creates:
-- 30 Stripe Products with proper metadata (`productType`, `tier`, `category`)
-- 30 monthly recurring Prices based on the tier
+This creates **53 Stripe products**:
+- 5 Token Packs (one-time payments: $4.99 – $249.99)
+- 45 Individual App Subscriptions ($9.99/mo each)
+- 3 Tiered Plans (Basic $29.99/mo, Pro $69.99/mo, Ultimate $99.99/mo)
 
-Output is saved to `config/stripe-products-output.json`.
+Output saved to `stripe-products.json` and `config/stripe-products-output.json`.
 
----
+### 2. Configure Webhook
 
-## 3. Configuring Webhooks
+See **[STRIPE_WEBHOOK_SETUP.md](./STRIPE_WEBHOOK_SETUP.md)** for detailed instructions.
 
-1. Go to [Stripe Dashboard → Developers → Webhooks](https://dashboard.stripe.com/webhooks)
-2. Click **Add endpoint**
-3. Enter your endpoint URL: `https://yourdomain.com/api/stripe/webhook`
-4. Select events:
-   - `checkout.session.completed`
-   - `invoice.payment_succeeded`
-   - `customer.subscription.deleted`
-5. Copy the **Signing secret** (`whsec_...`) and add to `.env`:
+### 3. Set Environment Variables
 
 ```env
-STRIPE_WEBHOOK_SECRET=whsec_...
+STRIPE_SECRET_KEY=sk_live_xxx
+NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_live_xxx
+STRIPE_WEBHOOK_SECRET=whsec_xxx
 ```
 
-### Local Development
+## Architecture
 
-```bash
-stripe listen --forward-to localhost:3000/api/stripe/webhook
+### Pricing Model
+
+| Type | Products | Price | Billing |
+|------|----------|-------|---------|
+| Token Packs | 5 | $4.99 – $249.99 | One-time |
+| Individual Apps | 45 | $9.99/mo each | Subscription |
+| Basic Plan | 1 | $29.99/mo (10 apps) | Subscription |
+| Pro Plan | 1 | $69.99/mo (25 apps) | Subscription |
+| Ultimate Plan | 1 | $99.99/mo (45 apps) | Subscription |
+| Free Tier | — | $0 (1 free scan + ad tokens) | — |
+
+### Subscription Storage
+
+All subscriptions stored in `User.subscriptions` JSON field:
+
+```json
+{
+  "codeaudit": { "active": true, "subId": "sub_xxx", "expiresAt": "2026-04-17T..." },
+  "pixelcraft": { "active": true, "subId": "sub_yyy", "expiresAt": "2026-04-17T..." },
+  "_plan": { "planId": "plan_pro", "appsIncluded": 25, "active": true, "subId": "sub_zzz", "expiresAt": "2026-04-17T..." }
+}
 ```
 
----
+### API Routes
 
-## 4. How the Payment Flow Works
+| Route | Purpose |
+|-------|---------|
+| `POST /api/stripe/checkout` | Create checkout sessions (apps, plans) |
+| `POST /api/tokens/purchase` | Create token pack checkout sessions |
+| `POST /api/stripe/webhook` | Handle all Stripe webhook events |
+| `GET /api/tokens/balance` | Get user token balance |
+| `GET /api/tokens/purchase` | List available token packages |
 
-```
-User clicks "Subscribe" on any tool
-  → POST /api/stripe/checkout  { productType: "codeaudit_subscription" }
-  → Stripe Checkout Session created with tier pricing
-  → User completes payment on Stripe
-  → Stripe fires checkout.session.completed webhook
-  → POST /api/stripe/webhook
-  → User.subscriptions JSON updated: { codeaudit_subscription: { active: true, ... } }
-  → User redirected to tool page with access granted
-```
+### Configuration Files
 
----
+| File | Purpose |
+|------|---------|
+| `config/products.json` | Source of truth for all tools, tiers, token packs, plans |
+| `stripe-products.json` | Generated Stripe product/price IDs |
+| `scripts/setup-stripe-products.js` | Script to create Stripe products |
 
-## 5. Pricing Tiers
+## Test Cards
 
-| Tier       | Price/mo | Count | Tools |
-|------------|----------|-------|-------|
-| Basic      | $4.99    | 5     | MailPilot, RecipeRx, StudyBlitz, InvoicePro, MindMap |
-| Standard   | $9.99    | 10    | DocuWise, BrandSpark, FitForge, LexiLearn, AdCopy, Socialize, SEOMaster, WriteFlow, TaskFlow, TravelMate |
-| Premium    | $14.99   | 9     | CodeAudit, PixelCraft, VoiceBox, DataWeave, BugBuster, SketchAI, VideoSync, APIGen, HealthPulse |
-| Enterprise | $24.99   | 6     | ChatGenius, PitchDeck, StockSense, ContractIQ, SecureNet, RealtorIQ |
-
----
-
-## 6. Testing
-
-Use test card numbers:
-- **Success:** `4242 4242 4242 4242`
-- **Decline:** `4000 0000 0000 0002`
-- **3D Secure:** `4000 0027 6000 3184`
-
-Expiry: any future date. CVC: any 3 digits.
-
----
-
-## 7. Going Live
-
-1. Activate your Stripe account
-2. Get **live** API keys
-3. Create a **new webhook** for your production domain
-4. Update `.env` with live keys
-5. Re-run the setup script with your live key:
-   ```bash
-   STRIPE_SECRET_KEY=sk_live_XXXXX node scripts/setup-stripe-products.js --live
-   ```
+| Card Number | Result |
+|-------------|--------|
+| `4242 4242 4242 4242` | Successful payment |
+| `4000 0000 0000 3220` | 3D Secure authentication |
+| `4000 0000 0000 9995` | Declined |

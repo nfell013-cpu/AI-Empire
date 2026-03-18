@@ -15,6 +15,7 @@ const tokenPackages = productsConfig.tokenPackages as Array<{
   name: string;
   tokens: number;
   priceInCents: number;
+  popular?: boolean;
 }>;
 
 export async function POST(request: NextRequest) {
@@ -65,10 +66,10 @@ export async function POST(request: NextRequest) {
           price_data: {
             currency: 'usd',
             product_data: {
-              name: `${pkg.name} Token Package`,
+              name: `AI Empire — ${pkg.name} Token Pack`,
               description: `${pkg.tokens.toLocaleString()} AI Empire tokens`,
               metadata: {
-                type: 'tokens',
+                type: 'token_purchase',
                 packageId: pkg.id,
                 tokenAmount: pkg.tokens.toString(),
               },
@@ -84,8 +85,8 @@ export async function POST(request: NextRequest) {
         packageId: pkg.id,
         tokenAmount: pkg.tokens.toString(),
       },
-      success_url: `${process.env.NEXTAUTH_URL || request.headers.get('origin') || 'http://localhost:3000'}/dashboard?token_purchase=success`,
-      cancel_url: `${process.env.NEXTAUTH_URL || request.headers.get('origin') || 'http://localhost:3000'}/dashboard?token_purchase=cancelled`,
+      success_url: `${process.env.NEXTAUTH_URL || request.headers.get('origin') || 'http://localhost:3000'}/dashboard?token_purchase=success&tokens=${pkg.tokens}`,
+      cancel_url: `${process.env.NEXTAUTH_URL || request.headers.get('origin') || 'http://localhost:3000'}/pricing?tab=tokens&token_purchase=cancelled`,
     });
 
     // Record the purchase attempt
@@ -109,5 +110,15 @@ export async function POST(request: NextRequest) {
 
 // GET: list available packages
 export async function GET() {
-  return NextResponse.json({ packages: tokenPackages });
+  return NextResponse.json({
+    packages: tokenPackages.map(pkg => ({
+      id: pkg.id,
+      name: pkg.name,
+      tokens: pkg.tokens,
+      priceInCents: pkg.priceInCents,
+      priceFormatted: `$${(pkg.priceInCents / 100).toFixed(2)}`,
+      perTokenCost: `$${(pkg.priceInCents / 100 / pkg.tokens).toFixed(3)}`,
+      popular: pkg.popular || false,
+    })),
+  });
 }
