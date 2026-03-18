@@ -25,6 +25,8 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "Input is required" }, { status: 400 });
     }
 
+    // Admin bypass - no token cost for admins
+    if (user.role !== "admin") {
     // Check token balance
     if (user.tokens < 1) {
       return NextResponse.json({ error: "Insufficient tokens. Watch an ad or purchase tokens to continue." }, { status: 402 });
@@ -48,6 +50,7 @@ export async function POST(request: NextRequest) {
       },
     });
 
+    } // end admin bypass
     // Call AI
     const apiKey = process.env.OPENAI_API_KEY;
     if (!apiKey) {

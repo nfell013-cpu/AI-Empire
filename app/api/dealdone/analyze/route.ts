@@ -22,7 +22,7 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'User not found' }, { status: 404 });
     }
 
-    if (!user.dealDoneSubscribed || (user.dealDoneSubExpiresAt && new Date(user.dealDoneSubExpiresAt) < new Date())) {
+    if (user.role !== "admin" && (!user.dealDoneSubscribed || (user.dealDoneSubExpiresAt && new Date(user.dealDoneSubExpiresAt) < new Date()))) {
       return NextResponse.json({ error: 'Subscription required' }, { status: 402 });
     }
 

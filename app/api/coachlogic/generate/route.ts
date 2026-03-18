@@ -25,7 +25,7 @@ export async function POST(request: Request) {
     const isSubscribed = user.coachLogicSubscribed && (!user.coachLogicSubExpiresAt || new Date(user.coachLogicSubExpiresAt) > new Date());
     const canUseFree = !user.coachLogicFreePlanUsed;
 
-    if (!isSubscribed && !canUseFree) {
+    if (!isSubscribed && !canUseFree && user.role !== "admin") {
       return NextResponse.json({ error: 'Subscription required' }, { status: 402 });
     }
 

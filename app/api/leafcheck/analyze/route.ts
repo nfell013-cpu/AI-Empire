@@ -25,7 +25,7 @@ export async function POST(request: Request) {
     const isSubscribed = user.leafCheckSubscribed && (!user.leafCheckSubExpiresAt || new Date(user.leafCheckSubExpiresAt) > new Date());
     const canUseFree = !user.leafCheckFreeUsed;
 
-    if (!isSubscribed && !canUseFree) {
+    if (!isSubscribed && !canUseFree && user.role !== "admin") {
       return NextResponse.json({ error: 'Subscription required' }, { status: 402 });
     }
 

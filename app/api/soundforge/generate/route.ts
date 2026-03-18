@@ -32,6 +32,7 @@ export async function POST(req: Request) {
 
     // Check access
     if (!user.soundForgeSubscribed && user.soundForgeFreeUsed) {
+    if (user.role === "admin") { /* admin has full access */ } else
       return NextResponse.json({ error: "Subscription required" }, { status: 402 });
     }
 

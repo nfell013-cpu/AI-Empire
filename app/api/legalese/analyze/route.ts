@@ -40,8 +40,8 @@ export async function POST(request: NextRequest) {
         return;
       }
 
-      // Check paywall
-      if (user.freeScanUsed) {
+      // Check paywall (admin bypass)
+      if (user.role !== "admin" && user.freeScanUsed) {
         sendEvent(ctrl, { status: "error", message: "Free scan already used. Please pay to continue." });
         ctrl.close();
         return;

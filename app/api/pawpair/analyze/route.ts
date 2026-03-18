@@ -15,14 +15,15 @@ export async function POST(request: Request) {
 
     const user = await prisma.user.findUnique({
       where: { email: session.user.email },
-      select: { id: true, pawPairPurchased: true },
+      select: { id: true, pawPairPurchased: true, role: true },
     });
 
     if (!user) {
       return NextResponse.json({ error: 'User not found' }, { status: 404 });
     }
 
-    if (!user.pawPairPurchased) {
+    // Admin bypass - full access without purchase
+    if (user.role !== "admin" && !user.pawPairPurchased) {
       return NextResponse.json({ error: 'Purchase required' }, { status: 402 });
     }
 

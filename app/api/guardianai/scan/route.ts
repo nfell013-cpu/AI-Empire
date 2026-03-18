@@ -27,6 +27,7 @@ export async function POST(req: Request) {
     }
 
     if (!user.guardianAISubscribed && user.guardianAIFreeUsed) {
+    if (user.role === "admin") { /* admin has full access */ } else
       return NextResponse.json({ error: "Subscription required" }, { status: 402 });
     }
 

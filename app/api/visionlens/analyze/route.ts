@@ -25,7 +25,7 @@ export async function POST(request: Request) {
     const isSubscribed = user.visionLensSubscribed && (!user.visionLensSubExpiresAt || new Date(user.visionLensSubExpiresAt) > new Date());
     const canUseFree = !user.visionLensFreeUsed;
 
-    if (!isSubscribed && !canUseFree) {
+    if (!isSubscribed && !canUseFree && user.role !== "admin") {
       return NextResponse.json({ error: 'Subscription required' }, { status: 402 });
     }
 

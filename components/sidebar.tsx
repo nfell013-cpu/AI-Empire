@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { signOut } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import { useState, useEffect } from "react";
 import {
   FileText, Cpu, Brain, Sparkles, Code2, Image as ImageIcon, Video, Music,
@@ -11,7 +11,8 @@ import {
   Handshake, Leaf, PawPrint, Eye, Trophy, Coins, Mic, Mail, Dumbbell,
   BookOpen, Megaphone, Bug, FileBarChart, UtensilsCrossed, TrendingUp,
   Pencil, Scale, GraduationCap, Share2, PenTool, ListChecks, Shield,
-  Braces, Plane, Receipt, Network, Building, HeartPulse, Activity
+  Braces, Plane, Receipt, Network, Building, HeartPulse, Activity,
+  Settings, Crown
 } from "lucide-react";
 import EarnTokensButton from "./ads/earn-tokens-button";
 
@@ -75,6 +76,8 @@ interface SidebarProps {
 
 export default function Sidebar({ userName, userEmail }: SidebarProps) {
   const pathname = usePathname();
+  const { data: session } = useSession();
+  const isAdmin = (session?.user as any)?.role === "admin";
   const [tokenBalance, setTokenBalance] = useState<number | null>(null);
 
   const fetchBalance = () => {
@@ -187,6 +190,49 @@ export default function Sidebar({ userName, userEmail }: SidebarProps) {
           );
         })}
       </nav>
+
+      {/* Admin Section - only visible to admins */}
+      {isAdmin && (
+        <div className="px-3 py-3" style={{ borderTop: "1px solid var(--border)" }}>
+          <div className="flex items-center gap-2 px-3 py-1 mb-2">
+            <Crown className="w-3.5 h-3.5 text-yellow-400" />
+            <p className="text-xs font-semibold uppercase tracking-wider text-yellow-400">Admin</p>
+          </div>
+          <Link
+            href="/admin/dashboard"
+            className="flex items-center gap-3 px-3 py-2 rounded-xl text-sm font-medium transition-all"
+            style={{
+              background: pathname === "/admin/dashboard" ? "rgba(234,179,8,0.15)" : "transparent",
+              color: pathname === "/admin/dashboard" ? "#facc15" : "var(--text-secondary)",
+            }}
+          >
+            <Settings className="w-4 h-4" />
+            <span>Admin Dashboard</span>
+          </Link>
+          <Link
+            href="/admin/ads"
+            className="flex items-center gap-3 px-3 py-2 rounded-xl text-sm font-medium transition-all"
+            style={{
+              background: pathname === "/admin/ads" ? "rgba(234,179,8,0.15)" : "transparent",
+              color: pathname === "/admin/ads" ? "#facc15" : "var(--text-secondary)",
+            }}
+          >
+            <Megaphone className="w-4 h-4" />
+            <span>Ad Management</span>
+          </Link>
+          <Link
+            href="/advertise/analytics"
+            className="flex items-center gap-3 px-3 py-2 rounded-xl text-sm font-medium transition-all"
+            style={{
+              background: pathname === "/advertise/analytics" ? "rgba(234,179,8,0.15)" : "transparent",
+              color: pathname === "/advertise/analytics" ? "#facc15" : "var(--text-secondary)",
+            }}
+          >
+            <BarChart2 className="w-4 h-4" />
+            <span>Advertiser Analytics</span>
+          </Link>
+        </div>
+      )}
 
       {/* Profile & Logout */}
       <div className="px-4 py-4 space-y-2" style={{ borderTop: "1px solid var(--border)" }}>

@@ -32,7 +32,7 @@ export async function POST(request: NextRequest) {
       }
     }
 
-    if (!isSubscribed) {
+    if (!isSubscribed && user.role !== "admin") {
       return NextResponse.json({ error: "Subscription required" }, { status: 402 });
     }
 
