@@ -32,6 +32,15 @@ export default function AdminAdsPage() {
             </h1>
           </div>
           <p style={{ color: 'var(--text-secondary)' }}>Review, approve, or reject submitted advertisements.</p>
+          <div className="flex gap-3 mt-4">
+            <a
+              href="/admin/dashboard"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-all"
+              style={{ background: 'rgba(16,185,129,0.15)', color: '#10b981', border: '1px solid rgba(16,185,129,0.3)' }}
+            >
+              📊 Super Dashboard
+            </a>
+          </div>
         </div>
 
         <AdminReviewPanel />

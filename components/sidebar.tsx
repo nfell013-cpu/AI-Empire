@@ -131,6 +131,18 @@ export default function Sidebar({ userName, userEmail }: SidebarProps) {
           <span>Dashboard</span>
         </Link>
 
+        <Link
+          href="/dashboard/analytics"
+          className="flex items-center gap-3 px-3 py-2 rounded-xl text-sm font-medium transition-all group"
+          style={{
+            background: pathname === "/dashboard/analytics" ? "rgba(99,102,241,0.15)" : "transparent",
+            color: pathname === "/dashboard/analytics" ? "var(--accent-light)" : "var(--text-secondary)",
+          }}
+        >
+          <BarChart2 className="w-4 h-4" />
+          <span>Analytics</span>
+        </Link>
+
         <div className="pt-3 pb-1 px-3">
           <p className="text-xs font-semibold uppercase tracking-wider" style={{ color: "var(--text-secondary)", opacity: 0.5 }}>AI Tools</p>
         </div>

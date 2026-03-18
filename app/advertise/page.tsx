@@ -24,6 +24,13 @@ function AdvertiseContent() {
           <p className="text-lg" style={{ color: 'var(--text-secondary)' }}>
             Reach thousands of engaged users across 15 AI-powered tools.
           </p>
+          <a
+            href="/advertise/analytics"
+            className="inline-flex items-center gap-2 mt-4 px-4 py-2 rounded-lg text-sm font-medium transition-all"
+            style={{ background: 'rgba(99,102,241,0.15)', color: 'var(--accent)', border: '1px solid rgba(99,102,241,0.3)' }}
+          >
+            📈 View Analytics Dashboard
+          </a>
         </div>
 
         {/* Success/Cancel messages */}
